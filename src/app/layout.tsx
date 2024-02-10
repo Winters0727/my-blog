@@ -18,7 +18,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Winters의 블로그에 어서오세요 :)",
-  description: "FE 개발자 winters의 블로그입니다.",
+  description: "FE 개발자 Winters의 블로그입니다.",
+  icons: {
+    icon: "/images/icons/icon.png",
+  },
 };
 
 const RootLayout = ({
@@ -26,6 +29,8 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const TITLE = "Winters의 잡동사니 창고";
+
   dayjs.locale("ko");
   return (
     <html lang="ko">
@@ -34,7 +39,7 @@ const RootLayout = ({
           <ThemeProvider>
             <PageWrapper>
               <Header />
-              <Title title="Winters의 잡동사니 창고" />
+              <Title title={TITLE} />
               {children}
               <Footer />
             </PageWrapper>
