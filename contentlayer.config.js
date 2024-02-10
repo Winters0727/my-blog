@@ -6,13 +6,9 @@ import remarkGfm from "remark-gfm";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
-  slug: {
+  path: {
     type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
-  },
-  slugAsParams: {
-    type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    resolve: (doc) => `/posts/${doc._raw.flattenedPath}`,
   },
 };
 
@@ -25,13 +21,17 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    subTitle: {
+    description: {
       type: "string",
       default: "",
     },
     category: {
       type: "string",
       default: "일상",
+    },
+    thumbnail: {
+      type: "string",
+      default: "images/default-thumbnail.jpg",
     },
     tags: {
       type: "list",
@@ -46,11 +46,11 @@ export const Post = defineDocumentType(() => ({
     },
     createdAt: {
       type: "date",
-      default: new Date().toDateString(),
+      required: true,
     },
     updatedAt: {
       type: "date",
-      default: new Date().toDateString(),
+      required: true,
     },
   },
   computedFields,
