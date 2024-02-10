@@ -4,15 +4,16 @@ import { useThemeContext } from "../context/ThemeContext";
 
 import {
   HeaderWrapper,
+  HeaderBlur,
   HeaderMainWrapper,
   HeaderSpace,
   ModeContainer,
   ModeChangeImage,
 } from "../styles/header.style";
 
-import COLORS from "../constant/colors";
+import type { FC } from "react";
 
-const Header = () => {
+const Header: FC = () => {
   const THEME_IMAGES = {
     dark: "/images/icons/light-mode.svg",
     light: "/images/icons/dark-mode.svg",
@@ -22,6 +23,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
+      <HeaderBlur />
       <HeaderMainWrapper></HeaderMainWrapper>
       <HeaderSpace />
       <ModeContainer>
