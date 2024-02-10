@@ -9,7 +9,9 @@ import {
   IconImage,
 } from "../styles/footer.style";
 
-const Footer = () => {
+import type { FC } from "react";
+
+const Footer: FC = () => {
   const FOOTER_TEXT = "Copyright 2024. Winters0727. All rights reserved.";
 
   const THEME_DATA = {
