@@ -12,15 +12,15 @@ import {
   PostTitleDate,
 } from "@/app/styles/post.style";
 
-const PostTitle = ({
-  title,
-  tags,
-  createdAt,
-}: {
+import type { FC } from "react";
+
+interface PostTitleProps {
   title: string;
   tags: string[];
   createdAt: string;
-}) => {
+}
+
+const PostTitle: FC<PostTitleProps> = ({ title, tags, createdAt }) => {
   const theme = useThemeContext();
 
   dayjs.locale("ko");

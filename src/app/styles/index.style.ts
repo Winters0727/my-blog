@@ -7,7 +7,7 @@ export const BackgroundWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const PageWrapper = styled.article`
+export const PageWrapper = styled.main`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -15,4 +15,19 @@ export const PageWrapper = styled.article`
   min-width: 320px;
   max-width: 1280px;
   height: 100%;
+`;
+
+export const PostListWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  & > a,
+  a:link,
+  a:active,
+  a:hover,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
 `;

@@ -4,7 +4,13 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 
 import { PostContentWrapper } from "@/app/styles/post.style";
 
-const PostContent = ({ children }: { children: React.ReactNode }) => {
+import type { FC } from "react";
+
+interface PostContentProps {
+  children: React.ReactNode;
+}
+
+const PostContent: FC<PostContentProps> = ({ children }) => {
   const theme = useThemeContext();
 
   return (
