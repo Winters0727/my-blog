@@ -5,10 +5,11 @@ import COLORS from "../constant/colors";
 export const TitleWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
+  background-size: cover;
 
   .light {
     background-color: ${COLORS.theme.light};

@@ -23,7 +23,9 @@ const Title: FC<TitleProps> = ({
   return (
     <TitleWrapper
       className={theme?.mode}
-      style={{ backgroundImage: backgroundImage || "" }}
+      style={{
+        backgroundImage: (backgroundImage && `url(${backgroundImage})`) || "",
+      }}
     >
       <TitleText>{title}</TitleText>
     </TitleWrapper>
