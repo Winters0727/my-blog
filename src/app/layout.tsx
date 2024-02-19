@@ -30,8 +30,10 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   const TITLE = "Winters의 잡동사니 창고";
+  const BACKGROUND_IMAGE = "";
 
   dayjs.locale("ko");
+
   return (
     <html lang="ko">
       <body className={inter.className}>
@@ -39,7 +41,14 @@ const RootLayout = ({
           <ThemeProvider>
             <PageWrapper>
               <Header />
-              <Title title={TITLE} />
+              {BACKGROUND_IMAGE ? (
+                <Title
+                  title={TITLE}
+                  backgroundImage="/images/background.webp"
+                />
+              ) : (
+                <Title title={TITLE} />
+              )}
               {children}
               <Footer />
             </PageWrapper>
