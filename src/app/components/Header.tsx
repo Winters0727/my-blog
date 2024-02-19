@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeContext } from "../context/ThemeContext";
+import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
   HeaderWrapper,

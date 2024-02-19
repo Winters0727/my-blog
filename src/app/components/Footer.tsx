@@ -1,13 +1,13 @@
 "use client";
 
-import { useThemeContext } from "../context/ThemeContext";
+import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
   FooterWrapper,
   FooterText,
   IconContainer,
   IconImage,
-} from "../styles/footer.style";
+} from "@/app/styles/footer.style";
 
 import type { FC } from "react";
 
