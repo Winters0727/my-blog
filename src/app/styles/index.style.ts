@@ -15,14 +15,8 @@ export const PageWrapper = styled.main`
   min-width: 320px;
   max-width: 1280px;
   height: 100%;
-`;
 
-export const PostListWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-
-  & > a,
+  a,
   a:link,
   a:active,
   a:hover,
@@ -30,4 +24,18 @@ export const PostListWrapper = styled.section`
     color: inherit;
     text-decoration: none;
   }
+`;
+
+export const MainWrapper = styled.section`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 64px 0;
+  font-family: "BaeminJua";
+`;
+
+export const PostListWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
 `;

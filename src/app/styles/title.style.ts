@@ -1,22 +1,34 @@
 import styled from "styled-components";
 
-import COLORS from "../constant/colors";
+import COLORS from "@/app/constant/colors";
+
+const { light, dark } = COLORS.theme;
 
 export const TitleWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 15vh;
+  height: 20vh;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
   background-size: cover;
 
   .light {
-    background-color: ${COLORS.theme.light};
+    background-color: ${light.background};
   }
 
   .dark {
-    background-color: ${COLORS.theme.dark};
+    background-color: ${dark.background};
+  }
+
+  & > {
+    a {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 

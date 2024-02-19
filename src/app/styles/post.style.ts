@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import COLORS from "@/app//constant/colors";
 
+const { light, dark } = COLORS.theme;
+
 export const PostWrapper = styled.article`
   display: flex;
   flex-direction: column;
@@ -69,23 +71,22 @@ export const PostContentWrapper = styled.section`
 
   & > a,
   & > p > a {
-    color: #00ff00;
-    text-decoration: none;
+    color: ${COLORS.primary};
   }
 
   & > a:hover,
   & > p > a:hover {
-    color: #22ff22;
-  }
-
-  & > a:active,
-  & > p > a:active {
-    color: #0000ff;
+    color: ${COLORS.info};
   }
 
   & > a:visited,
   & > p > a:visited {
-    color: #ff2222;
+    color: ${COLORS.danger};
+  }
+
+  & > a:active,
+  & > p > a:active {
+    color: ${COLORS.success};
   }
 
   & > figure {
@@ -106,22 +107,22 @@ export const PostContentWrapper = styled.section`
     border-radius: 4px;
   }
 
-  &.light > blockquote {
-    background-color: ${COLORS.theme.light.blockquote};
-    border-left: 5px solid ${COLORS.theme.light.blockquoteBorder};
+  .light > blockquote {
+    background-color: ${light.blockquote};
+    border-left: 5px solid ${light.blockquoteBorder};
   }
 
-  &.dark > blockquote {
-    background-color: ${COLORS.theme.dark.blockquote};
-    border-left: 5px solid ${COLORS.theme.dark.blockquoteBorder};
+  .dark > blockquote {
+    background-color: ${dark.blockquote};
+    border-left: 5px solid ${dark.blockquoteBorder};
   }
 
-  &.light > p > em {
-    color: ${COLORS.theme.light.em};
+  .light > p > em {
+    color: ${light.em};
   }
 
-  &.dark > p > em {
-    color: ${COLORS.theme.dark.em};
+  .dark > p > em {
+    color: ${dark.em};
   }
 `;
 
@@ -155,11 +156,11 @@ export const PostTag = styled.span`
   border-radius: 32px;
   cursor: pointer;
 
-  &.light {
+  .light {
     background-color: ${COLORS.primary};
   }
 
-  &.dark {
+  .dark {
     background-color: ${COLORS.danger};
   }
 `;

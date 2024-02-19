@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
+import COLORS from "@/app/constant/colors";
+
 const HoverAnimation = keyframes`
   0% {
     transform: scale(1);
@@ -10,8 +12,6 @@ const HoverAnimation = keyframes`
   }
 `;
 
-import COLORS from "@/app/constant/colors";
-
 export const PostContainer = styled.article`
   display: flex;
   min-width: 640px;
@@ -20,6 +20,14 @@ export const PostContainer = styled.article`
   border-radius: 8px;
   cursor: pointer;
   word-break: keep-all;
+
+  &.light {
+    border-color: #000000;
+  }
+
+  &.dark {
+    border-color: #ffffff;
+  }
 
   &:hover {
     animation: ${HoverAnimation} 0.5s forwards;
@@ -44,6 +52,7 @@ export const PostThumbnail = styled.img`
   margin-left: auto;
   border: 1px solid transparent;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 export const PostTitle = styled.div`
