@@ -128,9 +128,13 @@ table {
   border-spacing: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 body.light {
   background-color: #ffffff;
-  color: #000000;
+  color: #222222;
 }
 
 body.dark {
