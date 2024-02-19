@@ -1,8 +1,10 @@
 "use client";
 
-import { useThemeContext } from "../context/ThemeContext";
+import Link from "next/link";
 
-import { TitleWrapper, TitleText } from "../styles/title.style";
+import { useThemeContext } from "@/app/context/ThemeContext";
+
+import { TitleWrapper, TitleText } from "@/app/styles/title.style";
 
 import type { FC } from "react";
 
@@ -27,7 +29,9 @@ const Title: FC<TitleProps> = ({
         backgroundImage: (backgroundImage && `url(${backgroundImage})`) || "",
       }}
     >
-      <TitleText>{title}</TitleText>
+      <Link href="/">
+        <TitleText>{title}</TitleText>
+      </Link>
     </TitleWrapper>
   );
 };
