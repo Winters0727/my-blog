@@ -27,7 +27,11 @@ export const Post = defineDocumentType(() => ({
     },
     category: {
       type: "string",
-      default: "일상",
+      default: "없음",
+    },
+    subCategory: {
+      type: "string",
+      default: "없음",
     },
     thumbnail: {
       type: "string",

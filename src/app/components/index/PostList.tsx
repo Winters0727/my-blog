@@ -1,29 +1,21 @@
 "use client";
 
-import { useCallback, useRef, useReducer, useEffect } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 
 import PostComponent from "./PostComponent";
 
-import { PostReducer } from "@/app/reducers/PostReducer";
-
-import { POST_COUNT } from "@/app/constant/post";
-
 import { PostListWrapper } from "@/app/styles/index.style";
 
-import type { FC } from "react";
-import type { Post } from "contentlayer/generated";
+import type { Dispatch, FC } from "react";
+import type { MainState, MainAction } from "@/app/reducers/MainReducer";
 
 interface PostListProps {
-  posts: Post[];
+  state: MainState;
+  dispatch: Dispatch<MainAction>;
 }
 
-const PostList: FC<PostListProps> = ({ posts }) => {
-  const [state, dispatch] = useReducer(PostReducer, {
-    currentPosts: posts.slice(0, POST_COUNT),
-    totalPosts: posts,
-  });
-
+const PostList: FC<PostListProps> = ({ state, dispatch }) => {
   const postWrapperRef = useRef<HTMLElement | null>(null);
 
   const handleIOIntersect: IntersectionObserverCallback = useCallback(
@@ -43,7 +35,7 @@ const PostList: FC<PostListProps> = ({ posts }) => {
         }
       });
     },
-    [state]
+    [state, dispatch]
   );
 
   useEffect(() => {
@@ -56,7 +48,7 @@ const PostList: FC<PostListProps> = ({ posts }) => {
     if (postWrapper && postWrapper.lastElementChild) {
       io.observe(postWrapper.lastElementChild);
     }
-  }, [posts, handleIOIntersect]);
+  }, [handleIOIntersect]);
 
   return (
     <PostListWrapper ref={postWrapperRef}>

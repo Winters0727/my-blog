@@ -2,7 +2,7 @@
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
-import { useThemeContext } from "../../context/ThemeContext";
+import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
   PostTitleWrapper,
