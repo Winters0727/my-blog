@@ -4,13 +4,13 @@ import COLORS from "@/app/constant/colors";
 
 const { light, dark } = COLORS.theme;
 
-export const AisdeWrapper = styled.aside`
-  display: flex;
-`;
-
 export const TagListWrapper = styled.ol`
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 10vh;
+  width: 100%;
+  height: fit-content;
   row-gap: 12px;
   list-style-type: none;
 `;
@@ -24,7 +24,6 @@ export const TagWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100px;
   padding: 16px 24px;
   font-weight: 500;
   border-radius: 8px;

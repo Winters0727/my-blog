@@ -8,14 +8,14 @@ const HoverAnimation = keyframes`
   }
 
   100% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
 export const PostContainer = styled.article`
   display: flex;
   min-width: 640px;
-  height: 160px;
+  height: 200px;
   border: 4px solid ${COLORS.black};
   border-radius: 8px;
   cursor: pointer;
@@ -37,9 +37,10 @@ export const PostContainer = styled.article`
 export const PostLeftArea = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
+  max-width: 400px;
   padding: 16px;
+  word-break: break-all;
 `;
 
 export const PostRightArea = styled.div`
@@ -50,16 +51,17 @@ export const PostThumbnail = styled.img`
   width: 240px;
   height: 100%;
   margin-left: auto;
-  border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
 `;
 
 export const PostTitle = styled.div`
+  margin-bottom: 16px;
   font-size: 1.5rem;
 `;
 
 export const PostDescription = styled.div`
+  margin-bottom: auto;
   font-size: 1.2rem;
 `;
 

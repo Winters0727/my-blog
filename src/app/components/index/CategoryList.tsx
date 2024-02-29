@@ -7,7 +7,6 @@ import CategoryComponent from "./CategoryComponent";
 import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
-  AisdeWrapper,
   TagListWrapper,
   TagWrapper,
   TagText,
@@ -46,38 +45,36 @@ const CategoryList: FC<CategoryListProps> = ({
   );
 
   return (
-    <AisdeWrapper>
-      <TagListWrapper>
-        <TagWrapper
-          className={
-            theme && isTagNotSelected
-              ? [theme.mode, "selected"].join(" ")
-              : theme.mode
-          }
-          onClick={() =>
-            dispatch({
-              type: "SELECT_CATEGORY",
-              payload: { category: "" },
-            })
-          }
-        >
-          <TagText>전체보기</TagText>
-        </TagWrapper>
-        {categoryKeys.map((category) => {
-          const categoryData = categories[category];
+    <TagListWrapper>
+      <TagWrapper
+        className={
+          theme && isTagNotSelected
+            ? [theme.mode, "selected"].join(" ")
+            : theme.mode
+        }
+        onClick={() =>
+          dispatch({
+            type: "SELECT_CATEGORY",
+            payload: { category: "" },
+          })
+        }
+      >
+        <TagText>전체보기</TagText>
+      </TagWrapper>
+      {categoryKeys.map((category) => {
+        const categoryData = categories[category];
 
-          return (
-            <CategoryComponent
-              key={category}
-              state={state}
-              dispatch={dispatch}
-              category={category}
-              categoryData={categoryData}
-            />
-          );
-        })}
-      </TagListWrapper>
-    </AisdeWrapper>
+        return (
+          <CategoryComponent
+            key={category}
+            state={state}
+            dispatch={dispatch}
+            category={category}
+            categoryData={categoryData}
+          />
+        );
+      })}
+    </TagListWrapper>
   );
 };
 
