@@ -1,21 +1,39 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+  defineDocumentType,
+  defineNestedType,
+  makeSource,
+} from "contentlayer/source-files";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
-const computedFields = {
+const postComputedFields = {
   path: {
     type: "string",
-    resolve: (doc) => `/posts/${doc._raw.flattenedPath}`,
+    resolve: (doc) => `/${doc._raw.flattenedPath}`,
   },
 };
+
+const GameDataNestedType = defineNestedType(() => ({
+  name: "GameInfo",
+  fields: {
+    id: {
+      type: "number",
+      required: true,
+    },
+    title: {
+      type: "string",
+      required: true,
+    },
+  },
+}));
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
   contentType: "mdx",
-  filePathPattern: "**/*.mdx",
+  filePathPattern: "posts/*.mdx",
   fields: {
     title: {
       type: "string",
@@ -48,6 +66,10 @@ export const Post = defineDocumentType(() => ({
       type: "boolean",
       default: true,
     },
+    gameData: {
+      type: "nested",
+      of: GameDataNestedType,
+    },
     createdAt: {
       type: "date",
       required: true,
@@ -57,11 +79,11 @@ export const Post = defineDocumentType(() => ({
       required: true,
     },
   },
-  computedFields,
+  computedFields: postComputedFields,
 }));
 
 export default makeSource({
-  contentDirPath: "src/posts",
+  contentDirPath: "src/mdx",
   documentTypes: [Post],
   mdx: {
     remarkPlugins: [remarkGfm],
