@@ -40,8 +40,8 @@ const CategoryList: FC<CategoryListProps> = ({
 
   const categoryKeys = Object.keys(categories);
 
-  categoryKeys.sort(
-    (prev, next) => categories[next].totalCount - categories[prev].totalCount
+  categoryKeys.sort((prev, next) =>
+    categories[prev] < categories[next] ? -1 : 1
   );
 
   return (
