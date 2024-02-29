@@ -11,7 +11,12 @@ import { MainReducer } from "@/app/reducers/MainReducer";
 
 import { POST_COUNT } from "@/app/constant/post";
 
-import { MainWrapper } from "@/app/styles/index.style";
+import {
+  MainWrapper,
+  LeftSection,
+  MiddleSection,
+  RightSection,
+} from "@/app/styles/index.style";
 
 import type { NextPage } from "next";
 
@@ -58,9 +63,19 @@ const MainPage: NextPage = () => {
 
   return (
     <MainWrapper>
-      <CategoryList state={state} dispatch={dispatch} categories={categories} />
-      <PostList state={state} dispatch={dispatch} />
-      <ClockComponent />
+      <LeftSection>
+        <CategoryList
+          state={state}
+          dispatch={dispatch}
+          categories={categories}
+        />
+      </LeftSection>
+      <MiddleSection>
+        <PostList state={state} dispatch={dispatch} />
+      </MiddleSection>
+      <RightSection>
+        <ClockComponent />
+      </RightSection>
     </MainWrapper>
   );
 };
