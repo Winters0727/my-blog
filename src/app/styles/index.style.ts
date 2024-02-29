@@ -15,6 +15,7 @@ export const PageWrapper = styled.main`
   min-width: 320px;
   max-width: 1280px;
   height: 100%;
+  min-height: 100vh;
 
   a,
   a:link,
@@ -29,13 +30,32 @@ export const PageWrapper = styled.main`
 export const MainWrapper = styled.section`
   display: flex;
   width: 100%;
+  min-width: 1280px;
+  height: 100%;
   justify-content: space-around;
-  margin: 64px 0;
+  margin: 64px 0 auto 0;
   font-family: "BaeminJua";
 `;
 
-export const PostListWrapper = styled.section`
+export const LeftSection = styled.section`
+  display: flex;
+  justify-content: center;
+  min-width: 160px;
+`;
+
+export const MiddleSection = styled.section`
+  display: flex;
+`;
+
+export const RightSection = styled.section`
+  display: flex;
+  justify-content: center;
+  min-width: 300px;
+`;
+
+export const PostListWrapper = styled.main`
   display: flex;
   flex-direction: column;
+  height: fit-content;
   row-gap: 32px;
 `;
