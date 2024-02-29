@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 
-import { MagnifiedImage, MagnifiedImageWrapper } from "@/app/styles/post.style";
+import {
+  MagnifiedImage,
+  MagnifiedImageWrapper,
+} from "@/app/styles/post/game.style";
 
 import type { FC } from "react";
 

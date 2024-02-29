@@ -29,7 +29,7 @@ import {
   RatingTagWrapper,
   RatingTag,
   YoutubeIframe,
-} from "@/app/styles/post.style";
+} from "@/app/styles/post/game.style";
 
 import type { FC } from "react";
 import type { GameData } from "@/app/types/post.type";
