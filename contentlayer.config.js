@@ -17,13 +17,27 @@ const postComputedFields = {
 };
 
 const GameDataNestedType = defineNestedType(() => ({
-  name: "GameInfo",
+  name: "GameData",
   fields: {
     id: {
       type: "number",
       required: true,
     },
     title: {
+      type: "string",
+      required: true,
+    },
+  },
+}));
+
+const AbbreviationPostNestedType = defineNestedType(() => ({
+  name: "AbbreviationPost",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    path: {
       type: "string",
       required: true,
     },
@@ -65,6 +79,17 @@ export const Post = defineDocumentType(() => ({
     published: {
       type: "boolean",
       default: true,
+    },
+    previousPost: {
+      type: "nested",
+      of: AbbreviationPostNestedType,
+    },
+    nextPost: {
+      type: "nested",
+      of: AbbreviationPostNestedType,
+    },
+    series: {
+      type: "string",
     },
     gameData: {
       type: "nested",

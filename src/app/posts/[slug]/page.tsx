@@ -4,12 +4,12 @@ import { allPosts } from "contentlayer/generated";
 
 import PostTitle from "@/app/components/post/PostTitle";
 import PostContent from "@/app/components/post/PostContext";
-import GameComponent from "@/app/components/post/GameComponent";
+import GameContent from "@/app/components/post/GameContent";
+import SeriesList from "@/app/components/post/SeriesList";
 
 import { PostWrapper } from "@/app/styles/post.style";
 
 import type { FC } from "react";
-import type { Category } from "@/app/types/post.type";
 
 interface PageProps {
   params: {
@@ -36,8 +36,16 @@ const Page: FC<PageProps> = (props) => {
         createdAt={post.createdAt}
       />
       <PostContent>
+        {post.series && (
+          <SeriesList
+            title={post.series}
+            series={allPosts.filter(
+              (comparedPost) => comparedPost.series === post.series
+            )}
+          />
+        )}
         {post.category === "Game" && post.gameData && (
-          <GameComponent id={post.gameData.id} title={post.gameData.title} />
+          <GameContent id={post.gameData.id} title={post.gameData.title} />
         )}
         <MDXComponent />
       </PostContent>

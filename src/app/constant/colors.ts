@@ -38,6 +38,7 @@ const COLORS = {
   danger: "#d9534f",
   inverse: "#292b2c",
   faded: "#f7f7f7",
+  gray: "#aaaaaa",
 };
 
 export default COLORS;

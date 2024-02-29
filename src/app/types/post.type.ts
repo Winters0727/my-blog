@@ -59,3 +59,8 @@ export interface GameData {
 export interface GameResponse {
   data: GameData;
 }
+
+export interface Series {
+  title: string;
+  path: string;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import COLORS from "@/app//constant/colors";
 
