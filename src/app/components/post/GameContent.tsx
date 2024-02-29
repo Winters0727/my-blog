@@ -34,12 +34,12 @@ import {
 import type { FC } from "react";
 import type { GameData } from "@/app/types/post.type";
 
-interface PostContentProps {
+interface GameContentProps {
   id: number;
   title: string;
 }
 
-const GameContent: FC<PostContentProps> = ({ id, title }) => {
+const GameContent: FC<GameContentProps> = ({ id, title }) => {
   const THROTTLE_TIME = 1500;
 
   const [data, setData] = useState<GameData | null>(null);
@@ -73,9 +73,7 @@ const GameContent: FC<PostContentProps> = ({ id, title }) => {
       e.stopPropagation();
 
       setImageUrl((e.target as HTMLImageElement).src);
-
-      if (!showImage) document.body.style.overflow = "hidden";
-
+      document.body.style.overflow = "hidden";
       setShowImage(true);
     }, THROTTLE_TIME),
     []
@@ -86,8 +84,7 @@ const GameContent: FC<PostContentProps> = ({ id, title }) => {
       e.preventDefault();
       e.stopPropagation();
 
-      if (showImage) document.body.style.overflow = "auto";
-
+      document.body.style.overflow = "auto";
       setShowImage(false);
     }, THROTTLE_TIME),
     []
