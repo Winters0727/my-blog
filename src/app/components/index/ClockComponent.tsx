@@ -45,6 +45,7 @@ const ClockComponent: FC = () => {
       minute: paddingDatetime(time.minute()),
       second: paddingDatetime(time.second()),
       day: DAYS[time.day()],
+      meridiem: time.hour() < 12 ? "AM" : "PM",
     };
 
     return timeData;
@@ -70,13 +71,11 @@ const ClockComponent: FC = () => {
       <TimeContainer>
         {hourFormat && (
           <TimeFormatWrapper>
-            {Array.from(parseInt(timer.hour) < 12 ? "AM" : "PM").map(
-              (char, index) => (
-                <TimeCharacter key={`${char}-${index}-${currentTime}`}>
-                  {char}
-                </TimeCharacter>
-              )
-            )}
+            {Array.from(timer.meridiem).map((char, index) => (
+              <TimeCharacter key={`${char}-${index}-${currentTime}`}>
+                {char}
+              </TimeCharacter>
+            ))}
           </TimeFormatWrapper>
         )}
         <TimeCharWrapper>
