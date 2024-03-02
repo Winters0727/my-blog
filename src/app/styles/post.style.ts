@@ -30,31 +30,31 @@ export const PostContentWrapper = styled.section`
     margin: 32px 0;
   }
 
-  & h1 {
+  & > h1 {
     font-size: 2.5rem;
   }
 
-  & h2 {
+  & > h2 {
     font-size: 2rem;
   }
 
-  & h3 {
+  & > h3 {
     font-size: 1.75rem;
   }
 
-  & h4 {
+  & > h4 {
     font-size: 1.5rem;
   }
 
-  & h5 {
+  & > h5 {
     font-size: 1.25rem;
   }
 
-  & h6 {
+  & > h6 {
     font-size: 1rem;
   }
 
-  & p {
+  & > p {
     display: block;
     width: 100%;
     margin: 16px 0;
@@ -62,7 +62,7 @@ export const PostContentWrapper = styled.section`
     line-height: 32px;
   }
 
-  & img {
+  & > p img {
     display: block;
     margin: 0 auto;
     width: fit-content;
@@ -71,25 +71,25 @@ export const PostContentWrapper = styled.section`
     border-radius: 4px;
   }
 
-  & a {
+  & > p a {
     width: fit-content;
     height: fit-content;
     color: ${COLORS.primary};
   }
 
-  & a:hover {
+  & > p a:hover {
     color: ${COLORS.info};
   }
 
-  & a:visited {
+  & > p a:visited {
     color: ${COLORS.danger};
   }
 
-  & a:active {
+  & > p a:active {
     color: ${COLORS.success};
   }
 
-  & figure {
+  & > p figure {
     font-family: "CommitMono";
     font-size: 1rem;
     font-weight: 700;
@@ -102,18 +102,18 @@ export const PostContentWrapper = styled.section`
     }
   }
 
-  & blockquote {
+  & > p blockquote {
     padding: 16px;
     border-radius: 4px;
   }
 
-  & em {
+  & > p em {
     display: block;
     margin: 0 auto;
     text-align: center;
   }
 
-  & ul {
+  & > p ul {
     font-size: 1.2rem;
     list-style: square;
 
@@ -126,13 +126,13 @@ export const PostContentWrapper = styled.section`
     }
   }
 
-  & strong {
+  & > p strong {
     margin: 0 2px;
     padding: 2px 6px;
     border-radius: 4px;
   }
 
-  &.light {
+  &.light > p {
     blockquote {
       background-color: ${light.blockquote};
       border-left: 5px solid ${light.blockquoteBorder};
@@ -148,7 +148,7 @@ export const PostContentWrapper = styled.section`
     }
   }
 
-  &.dark {
+  &.dark > p {
     blockquote {
       background-color: ${dark.blockquote};
       border-left: 5px solid ${dark.blockquoteBorder};

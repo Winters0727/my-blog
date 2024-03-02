@@ -42,11 +42,11 @@ export const SeriesWrapper = styled.section`
       color: ${COLORS.white};
 
       &.current {
-        color: ${COLORS.success};
+        color: ${COLORS.primary};
       }
 
       &.current:hover {
-        color: ${COLORS.green};
+        color: ${COLORS.blue};
       }
 
       &:not(.current):hover {
