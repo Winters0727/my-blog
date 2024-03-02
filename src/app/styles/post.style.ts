@@ -89,7 +89,7 @@ export const PostContentWrapper = styled.section`
     color: ${COLORS.success};
   }
 
-  & > p figure {
+  & > figure {
     font-family: "CommitMono";
     font-size: 1rem;
     font-weight: 700;
