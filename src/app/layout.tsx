@@ -10,7 +10,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 
 import Header from "@/app/components/Header";
 import Title from "@/app/components/Title";
-import Footer from "./components/Footer";
+import Footer from "@/app/components/Footer";
+import BlockContextMenu from "@/app/components/BlockContextMenu";
 
 import { PageWrapper } from "./styles/index.style";
 
@@ -51,6 +52,7 @@ const RootLayout = ({
               )}
               {children}
               <Footer />
+              <BlockContextMenu />
             </PageWrapper>
           </ThemeProvider>
         </GlobalProvider>
