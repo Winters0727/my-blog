@@ -179,8 +179,8 @@ export const GameImageContainer = styled.div`
 `;
 
 export const GameImageThumb = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 4px;
   cursor: pointer;
 `;

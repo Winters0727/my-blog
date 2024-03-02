@@ -32,7 +32,7 @@ import {
 } from "@/app/styles/post/game.style";
 
 import type { FC } from "react";
-import type { GameData } from "@/app/types/post.type";
+import type { GameData, ImageSize } from "@/app/types/post.type";
 
 interface GameContentProps {
   id: number;
@@ -67,12 +67,15 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
   const getRatingTagColor = (rating: number) =>
     rating >= 75 ? "good" : rating > 40 ? "normal" : "bad";
 
+  const changeImageSize = (url: string, size: ImageSize) =>
+    url.replace("t_1080p", `t_${size}`);
+
   const handleClickImage = useCallback(
     _.throttle((e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
 
-      setImageUrl((e.target as HTMLImageElement).src);
+      setImageUrl((e.target as HTMLImageElement).dataset.src || "");
       document.body.style.overflow = "hidden";
       setShowImage(true);
     }, THROTTLE_TIME),
@@ -168,7 +171,8 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
               <GameDataText>커버 이미지</GameDataText>
               <GameImageContainer>
                 <GameImageThumb
-                  src={data.cover.url}
+                  src={changeImageSize(data.cover.url, "thumb")}
+                  data-src={data.cover.url}
                   alt={data.cover.image_id}
                   onClick={handleClickImage}
                 />
@@ -182,7 +186,8 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
                 {data.artworks.map((artwork) => (
                   <GameImageThumb
                     key={artwork.image_id}
-                    src={artwork.url}
+                    src={changeImageSize(artwork.url, "thumb")}
+                    data-src={artwork.url}
                     alt={artwork.image_id}
                     onClick={handleClickImage}
                   />
@@ -197,7 +202,8 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
                 {data.screenshots.map((screenshot) => (
                   <GameImageThumb
                     key={screenshot.image_id}
-                    src={screenshot.url}
+                    src={changeImageSize(screenshot.url, "thumb")}
+                    data-src={screenshot.url}
                     alt={screenshot.image_id}
                     onClick={handleClickImage}
                   />

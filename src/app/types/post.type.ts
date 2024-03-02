@@ -44,6 +44,17 @@ interface Video {
 
 type ImageKeys = "width" | "height" | "image_id" | "url";
 
+export type ImageSize =
+  | "cover_small"
+  | "scrennshot_med"
+  | "cover_big"
+  | "screenshot_big"
+  | "screenshot_huge"
+  | "thumb"
+  | "micro"
+  | "720p"
+  | "1080p";
+
 export interface GameData {
   id: number;
   aggregated_rating: number;
