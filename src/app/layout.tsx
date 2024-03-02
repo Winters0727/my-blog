@@ -12,6 +12,7 @@ import Header from "@/app/components/Header";
 import Title from "@/app/components/Title";
 import Footer from "@/app/components/Footer";
 import BlockContextMenu from "@/app/components/BlockContextMenu";
+import VisitCount from "@/app/components/VisitCount";
 
 import { PageWrapper } from "./styles/index.style";
 
@@ -53,6 +54,7 @@ const RootLayout = ({
               {children}
               <Footer />
               <BlockContextMenu />
+              <VisitCount />
             </PageWrapper>
           </ThemeProvider>
         </GlobalProvider>
