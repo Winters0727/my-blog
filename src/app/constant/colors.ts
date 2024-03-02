@@ -11,6 +11,7 @@ const COLORS = {
       subTag: "#a3c7ff",
       subTagHover: "#479dff",
       subTagSelected: "#479dff",
+      strong: "#22272e",
     },
     dark: {
       background: "#aaaaaa",
@@ -23,6 +24,7 @@ const COLORS = {
       subTag: "#ffa1a1",
       subTagHover: "#ff6767",
       subTagSelected: "#ff6767",
+      strong: "#aa0000",
     },
   },
   black: "#000000",
@@ -39,6 +41,7 @@ const COLORS = {
   inverse: "#292b2c",
   faded: "#f7f7f7",
   gray: "#aaaaaa",
+  strong: "#888888",
 };
 
 export default COLORS;

@@ -5,12 +5,15 @@ import COLORS from "@/app/constant/colors";
 export const SeriesWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  max-width: 80%;
-  min-width: 1024px;
+  width: 100%;
   margin: 0 auto;
   padding: 32px 0;
   row-gap: 32px;
   border-radius: 8px;
+
+  & > div {
+    margin-left: 16px;
+  }
 
   &.light {
     background-color: ${COLORS.primary};

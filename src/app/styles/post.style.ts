@@ -30,118 +30,137 @@ export const PostContentWrapper = styled.section`
     margin: 32px 0;
   }
 
-  & > h1 {
+  & h1 {
     font-size: 2.5rem;
   }
 
-  & > h2 {
+  & h2 {
     font-size: 2rem;
   }
 
-  & > h3 {
+  & h3 {
     font-size: 1.75rem;
   }
 
-  & > h4 {
+  & h4 {
     font-size: 1.5rem;
   }
 
-  & > h5 {
+  & h5 {
     font-size: 1.25rem;
   }
 
-  & > h6 {
+  & h6 {
     font-size: 1rem;
   }
 
-  & > p {
-    display: flex;
-    flex-direction: column;
+  & p {
+    display: block;
+    width: 100%;
     margin: 16px 0;
     font-size: 20px;
     line-height: 32px;
-    word-break: break-all;
   }
 
-  & > img,
-  & > p > img,
-  & > p > a > img {
+  & img {
+    display: block;
+    margin: 0 auto;
     width: fit-content;
     max-width: 100%;
     height: auto;
-    margin: 0 auto;
     border-radius: 4px;
   }
 
-  & > a,
-  & > p > a {
+  & a {
     width: fit-content;
     height: fit-content;
     color: ${COLORS.primary};
   }
 
-  & > a:hover,
-  & > p > a:hover {
+  & a:hover {
     color: ${COLORS.info};
   }
 
-  & > a:visited,
-  & > p > a:visited {
+  & a:visited {
     color: ${COLORS.danger};
   }
 
-  & > a:active,
-  & > p > a:active {
+  & a:active {
     color: ${COLORS.success};
   }
 
-  & > figure {
+  & figure {
     font-family: "CommitMono";
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: 700;
     padding: 16px;
     line-height: 20px;
 
-    & > pre {
+    & pre {
       padding: 32px;
       border-radius: 8px;
     }
   }
 
-  & > blockquote {
+  & blockquote {
     padding: 16px;
     border-radius: 4px;
   }
 
-  &.light > blockquote {
-    background-color: ${light.blockquote};
-    border-left: 5px solid ${light.blockquoteBorder};
-  }
-
-  &.dark > blockquote {
-    background-color: ${dark.blockquote};
-    border-left: 5px solid ${dark.blockquoteBorder};
-  }
-
-  & > em,
-  & > p > em {
+  & em {
+    display: block;
+    margin: 0 auto;
     text-align: center;
   }
 
-  &.light > p > em {
-    color: ${light.em};
-  }
-
-  &.dark > p > em {
-    color: ${dark.em};
-  }
-
-  & > ul {
+  & ul {
     font-size: 1.2rem;
     list-style: square;
 
-    & > li {
+    & li {
       margin: 12px auto;
+
+      & p {
+        margin: 0;
+      }
+    }
+  }
+
+  & strong {
+    margin: 0 2px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  &.light {
+    blockquote {
+      background-color: ${light.blockquote};
+      border-left: 5px solid ${light.blockquoteBorder};
+    }
+
+    em {
+      color: ${light.em};
+    }
+
+    strong {
+      color: ${COLORS.white};
+      background-color: ${light.strong};
+    }
+  }
+
+  &.dark {
+    blockquote {
+      background-color: ${dark.blockquote};
+      border-left: 5px solid ${dark.blockquoteBorder};
+    }
+
+    em {
+      color: ${dark.em};
+    }
+
+    strong {
+      color: ${COLORS.white};
+      background-color: ${dark.strong};
     }
   }
 `;
