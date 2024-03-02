@@ -30,20 +30,22 @@ const SeriesList: FC<SeriesListProps> = ({ title, series }) => {
   }, []);
 
   return (
-    <SeriesWrapper className={theme && theme.mode}>
-      <SeriesTitle>{title} 관련 포스트</SeriesTitle>
-      <SeriesLinkContainer>
-        {series.map((data, index) => (
-          <Link key={data.title} href={data.path}>
-            <SeriesLink
-              className={location.pathname === data.path ? "current" : ""}
-            >
-              {`${index + 1}. ${data.title}`}
-            </SeriesLink>
-          </Link>
-        ))}
-      </SeriesLinkContainer>
-    </SeriesWrapper>
+    isClient && (
+      <SeriesWrapper className={theme && theme.mode}>
+        <SeriesTitle>{title}</SeriesTitle>
+        <SeriesLinkContainer>
+          {series.map((data, index) => (
+            <Link key={`${index}-${data.title}`} href={data.path}>
+              <SeriesLink
+                className={location.pathname === data.path ? "current" : ""}
+              >
+                {`${index + 1}. ${data.title}`}
+              </SeriesLink>
+            </Link>
+          ))}
+        </SeriesLinkContainer>
+      </SeriesWrapper>
+    )
   );
 };
 

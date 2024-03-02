@@ -44,7 +44,7 @@ const Page: FC<PageProps> = (props) => {
             )}
           />
         )}
-        {post.category === "Game" && post.gameData && (
+        {post.gameData && (
           <GameContent id={post.gameData.id} title={post.gameData.title} />
         )}
         <MDXComponent />

@@ -1,7 +1,5 @@
 import MainPage from "./pages";
 
-const Home = () => {
-  return <MainPage />;
-};
+const Home = () => <MainPage />;
 
 export default Home;
