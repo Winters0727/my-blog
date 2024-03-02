@@ -113,7 +113,7 @@ export const PostContentWrapper = styled.section`
     text-align: center;
   }
 
-  & > p ul {
+  & > ul {
     font-size: 1.2rem;
     list-style: square;
 
@@ -126,13 +126,13 @@ export const PostContentWrapper = styled.section`
     }
   }
 
-  & > p strong {
+  & strong {
     margin: 0 2px;
     padding: 2px 6px;
     border-radius: 4px;
   }
 
-  &.light > p {
+  &.light {
     blockquote {
       background-color: ${light.blockquote};
       border-left: 5px solid ${light.blockquoteBorder};
@@ -148,7 +148,7 @@ export const PostContentWrapper = styled.section`
     }
   }
 
-  &.dark > p {
+  &.dark {
     blockquote {
       background-color: ${dark.blockquote};
       border-left: 5px solid ${dark.blockquoteBorder};
