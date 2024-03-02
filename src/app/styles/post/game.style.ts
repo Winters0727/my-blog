@@ -120,7 +120,7 @@ export const ReleaseWrapper = styled.div`
 export const ReleaseText = styled.span`
   width: 50%;
   height: 100%;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 `;
 
 export const ReleaseDate = styled.span`

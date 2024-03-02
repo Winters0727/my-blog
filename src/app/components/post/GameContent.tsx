@@ -136,7 +136,7 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
           )}
           <RatingWrapper>
             <RatingContainer>
-              <RatingText>평점</RatingText>
+              <RatingText>IGDB 평점</RatingText>
               <RatingTagWrapper>
                 <RatingTag className={getRatingTagColor(data.rating)}>
                   {data.rating > 0 ? data.rating.toFixed(0) : "-"}
