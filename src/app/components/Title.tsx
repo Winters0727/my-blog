@@ -6,31 +6,22 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 
 import { TitleWrapper, TitleText } from "@/app/styles/title.style";
 
+import { TITLE, BACKGROUND_IMAGE } from "@/app/constant/index";
+
 import type { FC } from "react";
 
-interface TitleProps {
-  title: string;
-  backgroundImage?: string;
-}
-
-const Title: FC<TitleProps> = ({
-  title,
-  backgroundImage,
-}: {
-  title: string;
-  backgroundImage?: string;
-}) => {
+const Title: FC = () => {
   const theme = useThemeContext();
 
   return (
     <TitleWrapper
       className={theme?.mode}
       style={{
-        backgroundImage: (backgroundImage && `url(${backgroundImage})`) || "",
+        backgroundImage: (BACKGROUND_IMAGE && `url(${BACKGROUND_IMAGE})`) || "",
       }}
     >
       <Link href="/">
-        <TitleText>{title}</TitleText>
+        <TitleText>{TITLE}</TitleText>
       </Link>
     </TitleWrapper>
   );
