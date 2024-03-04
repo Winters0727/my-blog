@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Inter } from "next/font/google";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
@@ -12,7 +13,6 @@ import Header from "@/app/components/Header";
 import Title from "@/app/components/Title";
 import Footer from "@/app/components/Footer";
 import BlockContextMenu from "@/app/components/BlockContextMenu";
-import VisitCount from "@/app/components/VisitCount";
 
 import { PageWrapper } from "./styles/index.style";
 
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "Winters의 블로그에 어서오세요 :)",
   description: "FE 개발자 Winters의 블로그입니다.",
   icons: {
-    icon: "/images/icons/icon.png",
+    icon: "/images/favicon.ico",
   },
 };
 
@@ -31,30 +31,22 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const TITLE = "Winters의 잡동사니 창고";
-  const BACKGROUND_IMAGE = "";
-
   dayjs.locale("ko");
 
   return (
     <html lang="ko">
+      <Head>
+        <link rel="icon" href="/images/favicon.ico" sizes="48x48" />
+      </Head>
       <body className={inter.className}>
         <GlobalProvider>
           <ThemeProvider>
             <PageWrapper>
               <Header />
-              {BACKGROUND_IMAGE ? (
-                <Title
-                  title={TITLE}
-                  backgroundImage="/images/background.webp"
-                />
-              ) : (
-                <Title title={TITLE} />
-              )}
+              <Title />
               {children}
               <Footer />
               <BlockContextMenu />
-              <VisitCount />
             </PageWrapper>
           </ThemeProvider>
         </GlobalProvider>
