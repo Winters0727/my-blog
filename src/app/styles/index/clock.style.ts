@@ -11,7 +11,7 @@ export const ClockWrapper = styled.aside<{ $hourFormat: boolean }>`
   flex-direction: column;
   align-items: center;
   padding: 8px 16px;
-  min-width: ${(props) => (props.$hourFormat ? "240px" : "220px")};
+  width: ${(props) => (props.$hourFormat ? "240px" : "220px")};
   height: fit-content;
   font-family: "DSDigital";
   font-weight: 700;

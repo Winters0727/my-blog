@@ -37,20 +37,24 @@ export const MainWrapper = styled.section`
   font-family: "BaeminJua";
 `;
 
-export const LeftSection = styled.section`
-  display: flex;
-  justify-content: center;
-  min-width: 160px;
-`;
-
-export const MiddleSection = styled.section`
+const StyledSection = styled.section`
   display: flex;
 `;
 
-export const RightSection = styled.section`
-  display: flex;
+export const LeftSection = styled(StyledSection)`
   justify-content: center;
-  min-width: 300px;
+  width: 160px;
+`;
+
+export const MiddleSection = styled(StyledSection)`
+  width: 680px;
+`;
+
+export const RightSection = styled(StyledSection)`
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  row-gap: 16px;
 `;
 
 export const PostListWrapper = styled.main`

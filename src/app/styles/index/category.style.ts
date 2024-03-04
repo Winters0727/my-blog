@@ -12,6 +12,7 @@ export const TagListWrapper = styled.ol`
   width: 100%;
   height: fit-content;
   row-gap: 12px;
+  color: ${COLORS.white};
   list-style-type: none;
 `;
 

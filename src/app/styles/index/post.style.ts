@@ -16,17 +16,18 @@ export const PostContainer = styled.article`
   display: flex;
   min-width: 640px;
   height: 200px;
-  border: 4px solid ${COLORS.black};
+  border-width: 4px;
+  border-style: solid;
   border-radius: 8px;
   cursor: pointer;
   word-break: keep-all;
 
   &.light {
-    border-color: #000000;
+    border-color: ${COLORS.black};
   }
 
   &.dark {
-    border-color: #ffffff;
+    border-color: ${COLORS.white};
   }
 
   &:hover {
