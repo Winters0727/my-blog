@@ -11,6 +11,7 @@ import {
 } from "@/app/styles/index/profile.style";
 
 import {
+  PROFILE_DEFAULT_IMAGE,
   PROFILE_IMAGE,
   PROFILE_NAME,
   PROFILE_DESCRIPTION,
@@ -23,7 +24,10 @@ const ProfileComponent: FC = () => {
 
   return (
     <ProfileWrapper className={theme && theme.mode}>
-      <ProfileImage src={PROFILE_IMAGE} alt="프로필 이미지" />
+      <ProfileImage
+        src={PROFILE_IMAGE || PROFILE_DEFAULT_IMAGE}
+        alt="프로필 이미지"
+      />
       <ProfileContainer>
         <ProfileName>{PROFILE_NAME}</ProfileName>
         <ProfileDesciption>
