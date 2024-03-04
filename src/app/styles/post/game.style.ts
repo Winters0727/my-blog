@@ -34,8 +34,7 @@ export const GameDataWrapper = styled.section`
   justify-content: center;
   align-items: center;
   margin: 32px auto;
-  max-width: 80%;
-  min-width: 1024px;
+  max-width: 960px;
   border: 5px solid;
   border-radius: 8px;
 
@@ -57,9 +56,9 @@ export const GameDataWrapper = styled.section`
 `;
 
 export const YoutubeIframe = styled.iframe`
-  width: 70%;
+  width: 100%;
   height: auto;
-  min-height: 350px;
+  min-height: 30vh;
   margin: 0 auto;
 `;
 
@@ -92,46 +91,65 @@ export const MagnifiedImage = styled.img`
 
 export const GameTopWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   text-align: center;
 `;
 
+export const TopSubWrapper = styled.div`
+  display: flex;
+  border-top-width: 5px;
+  border-top-style: solid;
+`;
+
 export const GameTitle = styled.span`
   padding: 32px 0;
-  width: 70%;
-  height: 100%;
   font-size: 2rem;
 `;
 
-export const ReleaseWrapper = styled.div`
+export const CoverImageContainer = styled.div`
   display: flex;
-  width: 30%;
+  width: 60%;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CoverImage = styled.img`
+  width: auto;
+  height: 30vh;
+  cursor: pointer;
+`;
+
+export const ReleaseContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+`;
+
+export const ReleaseText = styled.span`
+  width: 50%;
+  font-size: 1.5rem;
+  text-align: center;
+`;
+
+export const ReleaseDateWrapper = styled.div`
+  display: flex;
+  width: 50%;
   height: 100%;
   justify-content: center;
   align-items: center;
   border-left-width: 5px;
   border-left-style: solid;
-
-  & > * {
-    padding: 32px 0;
-  }
-`;
-
-export const ReleaseText = styled.span`
-  width: 50%;
-  height: 100%;
-  font-size: 1.5rem;
 `;
 
 export const ReleaseDate = styled.span`
-  width: 50%;
-  height: 100%;
   font-size: 1.4rem;
-  border-left-width: 5px;
-  border-left-style: solid;
+  text-align: center;
 `;
 
-export const GameDataText = styled.span`
+export const GameImageText = styled.span`
   width: 30%;
   min-width: 200px;
   font-size: 1.5rem;
@@ -185,10 +203,10 @@ export const GameImageThumb = styled.img`
   cursor: pointer;
 `;
 
-export const RatingWrapper = styled.div`
+export const SubDataWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
   border-left-width: 5px;
   border-left-style: solid;
 

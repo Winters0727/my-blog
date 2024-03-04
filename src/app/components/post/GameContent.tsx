@@ -12,23 +12,27 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
   GameDataWrapper,
-  GameDataText,
+  GameImageText,
   GameTopWrapper,
   GameTitle,
-  ReleaseWrapper,
+  ReleaseContainer,
   ReleaseText,
+  ReleaseDateWrapper,
   ReleaseDate,
   GameDataContainer,
   GameMiddleWrapper,
   GameBottomWrapper,
   GameImageContainer,
   GameImageThumb,
-  RatingWrapper,
+  SubDataWrapper,
   RatingContainer,
   RatingText,
   RatingTagWrapper,
   RatingTag,
   YoutubeIframe,
+  CoverImageContainer,
+  CoverImage,
+  TopSubWrapper,
 } from "@/app/styles/post/game.style";
 
 import type { FC } from "react";
@@ -41,6 +45,7 @@ interface GameContentProps {
 
 const GameContent: FC<GameContentProps> = ({ id, title }) => {
   const THROTTLE_TIME = 1500;
+  const IMAGE_MAX_COUNT = 5;
 
   const [data, setData] = useState<GameData | null>(null);
 
@@ -100,10 +105,10 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
 
         const storedData = { ...data };
 
-        if (data.artworks && data.artworks.length > 6)
-          storedData.artworks = data.artworks.slice(0, 6);
-        if (data.screenshots && data.screenshots.length > 6)
-          storedData.screenshots = data.screenshots.slice(0, 6);
+        if (data.artworks && data.artworks.length > IMAGE_MAX_COUNT)
+          storedData.artworks = data.artworks.slice(0, IMAGE_MAX_COUNT);
+        if (data.screenshots && data.screenshots.length > IMAGE_MAX_COUNT)
+          storedData.screenshots = data.screenshots.slice(0, IMAGE_MAX_COUNT);
 
         setData(storedData);
       } catch (err: any) {}
@@ -117,12 +122,56 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
       <GameDataWrapper className={theme && theme.mode}>
         <GameTopWrapper>
           <GameTitle>{title}</GameTitle>
-          <ReleaseWrapper>
-            <ReleaseText>출시일</ReleaseText>
-            <ReleaseDate>
-              {dayjs(data.first_release_date).format("YYYY/MM/DD")}
-            </ReleaseDate>
-          </ReleaseWrapper>
+          <TopSubWrapper>
+            <CoverImageContainer>
+              {data.cover && (
+                <CoverImage
+                  src={changeImageSize(data.cover.url, "cover_big")}
+                  data-src={data.cover.url}
+                  alt={data.cover.image_id}
+                  onClick={handleClickImage}
+                />
+              )}
+            </CoverImageContainer>
+            <SubDataWrapper>
+              <ReleaseContainer>
+                <ReleaseText>출시일</ReleaseText>
+                <ReleaseDateWrapper>
+                  <ReleaseDate>
+                    {dayjs(data.first_release_date).format("YYYY/MM/DD")}
+                  </ReleaseDate>
+                </ReleaseDateWrapper>
+              </ReleaseContainer>
+              <RatingContainer>
+                <RatingText>IGDB 평점</RatingText>
+                <RatingTagWrapper>
+                  <RatingTag className={getRatingTagColor(data.rating)}>
+                    {data.rating > 0 ? data.rating.toFixed(0) : "-"}
+                  </RatingTag>
+                </RatingTagWrapper>
+              </RatingContainer>
+              <RatingContainer>
+                <RatingText>외부 평점</RatingText>
+                <RatingTagWrapper>
+                  <RatingTag
+                    className={getRatingTagColor(data.aggregated_rating)}
+                  >
+                    {data.aggregated_rating > 0
+                      ? data.aggregated_rating.toFixed(0)
+                      : "-"}
+                  </RatingTag>
+                </RatingTagWrapper>
+              </RatingContainer>
+              <RatingContainer>
+                <RatingText>전체 평점</RatingText>
+                <RatingTagWrapper>
+                  <RatingTag className={getRatingTagColor(data.total_rating)}>
+                    {data.total_rating > 0 ? data.total_rating.toFixed(0) : "-"}
+                  </RatingTag>
+                </RatingTagWrapper>
+              </RatingContainer>
+            </SubDataWrapper>
+          </TopSubWrapper>
         </GameTopWrapper>
         <GameMiddleWrapper>
           {trailerUrl && (
@@ -134,54 +183,11 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
               allowFullScreen
             />
           )}
-          <RatingWrapper>
-            <RatingContainer>
-              <RatingText>IGDB 평점</RatingText>
-              <RatingTagWrapper>
-                <RatingTag className={getRatingTagColor(data.rating)}>
-                  {data.rating > 0 ? data.rating.toFixed(0) : "-"}
-                </RatingTag>
-              </RatingTagWrapper>
-            </RatingContainer>
-            <RatingContainer>
-              <RatingText>외부 평점</RatingText>
-              <RatingTagWrapper>
-                <RatingTag
-                  className={getRatingTagColor(data.aggregated_rating)}
-                >
-                  {data.aggregated_rating > 0
-                    ? data.aggregated_rating.toFixed(0)
-                    : "-"}
-                </RatingTag>
-              </RatingTagWrapper>
-            </RatingContainer>
-            <RatingContainer>
-              <RatingText>전체 평점</RatingText>
-              <RatingTagWrapper>
-                <RatingTag className={getRatingTagColor(data.total_rating)}>
-                  {data.total_rating > 0 ? data.total_rating.toFixed(0) : "-"}
-                </RatingTag>
-              </RatingTagWrapper>
-            </RatingContainer>
-          </RatingWrapper>
         </GameMiddleWrapper>
         <GameBottomWrapper>
-          {data.cover && (
-            <GameDataContainer>
-              <GameDataText>커버 이미지</GameDataText>
-              <GameImageContainer>
-                <GameImageThumb
-                  src={changeImageSize(data.cover.url, "thumb")}
-                  data-src={data.cover.url}
-                  alt={data.cover.image_id}
-                  onClick={handleClickImage}
-                />
-              </GameImageContainer>
-            </GameDataContainer>
-          )}
           {data.artworks && (
             <GameDataContainer>
-              <GameDataText>아트워크</GameDataText>
+              <GameImageText>아트워크</GameImageText>
               <GameImageContainer>
                 {data.artworks.map((artwork) => (
                   <GameImageThumb
@@ -197,7 +203,7 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
           )}
           {data.screenshots && (
             <GameDataContainer>
-              <GameDataText>스크린샷</GameDataText>
+              <GameImageText>스크린샷</GameImageText>
               <GameImageContainer>
                 {data.screenshots.map((screenshot) => (
                   <GameImageThumb
