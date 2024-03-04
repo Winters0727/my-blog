@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 
 import CanvasApp from "@/app/canvas/app";
 
+import { NOTFOUND_MAX_COUNT } from "@/app/constant";
+
 import {
   NotFoundWrapper,
   NotFoundTitle,
@@ -12,7 +14,7 @@ import {
 } from "@/app/styles/404.style";
 
 const NotFound = () => {
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(NOTFOUND_MAX_COUNT);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imageRef1 = useRef<HTMLImageElement | null>(null);
@@ -29,7 +31,7 @@ const NotFound = () => {
     const image3 = imageRef3.current;
     const image4 = imageRef4.current;
 
-    let countdownValue = 5;
+    let countdownValue = NOTFOUND_MAX_COUNT;
 
     if (canvas && image1 && image2 && image3 && image4) {
       const app = new CanvasApp({
