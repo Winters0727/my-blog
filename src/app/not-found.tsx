@@ -10,6 +10,7 @@ import { NOTFOUND_MAX_COUNT } from "@/app/constant";
 import {
   NotFoundWrapper,
   NotFoundTitle,
+  NotFoundText,
   NotFoundImage,
 } from "@/app/styles/404.style";
 
@@ -62,7 +63,7 @@ const NotFound = () => {
   return (
     <NotFoundWrapper>
       <NotFoundTitle>404 Not Found</NotFoundTitle>
-      <NotFoundTitle>{countdown}초 후 메인페이지로 이동합니다.</NotFoundTitle>
+      <NotFoundText>{countdown}초 후 메인페이지로 이동합니다.</NotFoundText>
       <canvas width={500} height={500} ref={canvasRef} />
       <NotFoundImage
         style={{ display: "none" }}

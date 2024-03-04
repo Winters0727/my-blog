@@ -18,6 +18,11 @@ export const NotFoundTitle = styled.div`
   font-weight: 700;
 `;
 
+export const NotFoundText = styled.div`
+  font-size: 5rem;
+  font-weight: 500;
+`;
+
 export const NotFoundImage = styled.img`
   display: none;
 `;
