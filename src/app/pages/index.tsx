@@ -5,7 +5,9 @@ import { allPosts } from "contentlayer/generated";
 
 import PostList from "@/app/components/index/PostList";
 import CategoryList from "@/app/components/index/CategoryList";
-import ClockComponent from "../components/index/ClockComponent";
+import ProfileComponent from "@/app/components/index/ProfileComponent";
+import ClockComponent from "@/app/components/index/ClockComponent";
+import VisitComponent from "@/app/components/index/VisitComponent";
 
 import { MainReducer } from "@/app/reducers/MainReducer";
 
@@ -74,7 +76,9 @@ const MainPage: NextPage = () => {
         <PostList state={state} dispatch={dispatch} />
       </MiddleSection>
       <RightSection>
+        <ProfileComponent />
         <ClockComponent />
+        <VisitComponent />
       </RightSection>
     </MainWrapper>
   );

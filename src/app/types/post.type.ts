@@ -67,10 +67,6 @@ export interface GameData {
   videos?: ({ url: string } & Pick<Video, "name" | "video_id">)[];
 }
 
-export interface GameResponse {
-  data: GameData;
-}
-
 export interface Series {
   title: string;
   path: string;
