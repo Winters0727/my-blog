@@ -18,6 +18,7 @@ import {
   LeftSection,
   MiddleSection,
   RightSection,
+  RightSubSection,
 } from "@/app/styles/index.style";
 
 import type { NextPage } from "next";
@@ -77,8 +78,10 @@ const MainPage: NextPage = () => {
       </MiddleSection>
       <RightSection>
         <ProfileComponent />
-        <ClockComponent />
-        <VisitComponent />
+        <RightSubSection>
+          <ClockComponent />
+          <VisitComponent />
+        </RightSubSection>
       </RightSection>
     </MainWrapper>
   );

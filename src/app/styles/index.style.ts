@@ -15,7 +15,7 @@ export const PageWrapper = styled.main`
   min-width: 320px;
   max-width: 1280px;
   height: 100%;
-  min-height: 100vh;
+  min-height: 200vh;
 
   a,
   a:link,
@@ -54,6 +54,14 @@ export const RightSection = styled(StyledSection)`
   flex-direction: column;
   align-items: center;
   width: 300px;
+  row-gap: 16px;
+`;
+
+export const RightSubSection = styled(StyledSection)`
+  display: flex;
+  position: sticky;
+  top: 10vh;
+  flex-direction: column;
   row-gap: 16px;
 `;
 

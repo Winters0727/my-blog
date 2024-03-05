@@ -6,12 +6,10 @@ import COLORS from "@/app/constant/colors";
 
 export const ClockWrapper = styled.aside<{ $hourFormat: boolean }>`
   display: flex;
-  position: sticky;
-  top: 10vh;
   flex-direction: column;
   align-items: center;
   padding: 8px 16px;
-  width: ${(props) => (props.$hourFormat ? "240px" : "220px")};
+  width: ${(props) => (props.$hourFormat ? "260px" : "240px")};
   height: fit-content;
   font-family: "DSDigital";
   font-weight: 700;
