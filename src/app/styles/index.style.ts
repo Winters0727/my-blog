@@ -15,7 +15,7 @@ export const PageWrapper = styled.main`
   min-width: 320px;
   max-width: 1280px;
   height: 100%;
-  min-height: 200vh;
+  min-height: 100vh;
 
   a,
   a:link,
