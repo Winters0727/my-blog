@@ -60,6 +60,7 @@ const NotFound = () => {
 
     return () => clearInterval(intervalId);
   }, []);
+
   return (
     <NotFoundWrapper>
       <NotFoundTitle>404 Not Found</NotFoundTitle>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import { Inter } from "next/font/google";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
@@ -35,9 +34,6 @@ const RootLayout = ({
 
   return (
     <html lang="ko">
-      <Head>
-        <link rel="icon" href="/images/favicon.ico" sizes="48x48" />
-      </Head>
       <body className={inter.className}>
         <GlobalProvider>
           <ThemeProvider>

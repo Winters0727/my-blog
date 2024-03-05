@@ -103,14 +103,16 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
       try {
         const { data } = await getGameData(id);
 
-        const storedData = { ...data };
+        if (data) {
+          const storedData = { ...data };
 
-        if (data.artworks && data.artworks.length > IMAGE_MAX_COUNT)
-          storedData.artworks = data.artworks.slice(0, IMAGE_MAX_COUNT);
-        if (data.screenshots && data.screenshots.length > IMAGE_MAX_COUNT)
-          storedData.screenshots = data.screenshots.slice(0, IMAGE_MAX_COUNT);
+          if (data.artworks && data.artworks.length > IMAGE_MAX_COUNT)
+            storedData.artworks = data.artworks.slice(0, IMAGE_MAX_COUNT);
+          if (data.screenshots && data.screenshots.length > IMAGE_MAX_COUNT)
+            storedData.screenshots = data.screenshots.slice(0, IMAGE_MAX_COUNT);
 
-        setData(storedData);
+          setData(storedData);
+        }
       } catch (err: any) {}
     };
 
