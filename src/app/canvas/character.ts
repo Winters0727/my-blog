@@ -1,3 +1,11 @@
+interface CharacterAttrs {
+  context: CanvasRenderingContext2D | null;
+  frames: HTMLImageElement[];
+  times: number[];
+  x: number;
+  y: number;
+}
+
 export default class Character {
   private context: CanvasRenderingContext2D | null;
   private frames: HTMLImageElement[];
@@ -9,19 +17,7 @@ export default class Character {
   public x: number;
   public y: number;
 
-  constructor({
-    context,
-    frames,
-    times,
-    x,
-    y,
-  }: {
-    context: CanvasRenderingContext2D | null;
-    frames: HTMLImageElement[];
-    times: number[];
-    x: number;
-    y: number;
-  }) {
+  constructor({ context, frames, times, x, y }: CharacterAttrs) {
     this.context = context;
     this.frames = frames;
     this.times = times;

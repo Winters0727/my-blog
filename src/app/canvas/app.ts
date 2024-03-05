@@ -1,27 +1,23 @@
 import Character from "./character";
 
+interface AppAttrs {
+  canvas: HTMLCanvasElement;
+  width: number;
+  height: number;
+  frames: HTMLImageElement[];
+  times: number[];
+}
+
 export default class App {
   private canvas: HTMLCanvasElement;
   private character: Character;
   public width: number;
   public height: number;
   public ctx: CanvasRenderingContext2D | null;
-  static dpr: number = window.devicePixelRatio > 1 ? 2 : 1;
-  static interval: number = 100;
+  private dpr: number = window.devicePixelRatio > 1 ? 2 : 1;
+  private interval: number = 100;
 
-  constructor({
-    canvas,
-    width,
-    height,
-    frames,
-    times,
-  }: {
-    canvas: HTMLCanvasElement;
-    width: number;
-    height: number;
-    frames: HTMLImageElement[];
-    times: number[];
-  }) {
+  constructor({ canvas, width, height, frames, times }: AppAttrs) {
     this.canvas = canvas;
     this.width = width;
     this.height = height;
@@ -45,14 +41,14 @@ export default class App {
       now = Date.now();
       delta = now - then;
 
-      if (delta < App.interval) return;
+      if (delta < this.interval) return;
 
-      this.ctx?.clearRect(0, 0, this.width, this.height);
+      this.ctx && this.ctx.clearRect(0, 0, this.width, this.height);
 
       this.character.update();
       this.character.draw();
 
-      then = now - (delta % App.interval);
+      then = now - (delta % this.interval);
     };
 
     requestAnimationFrame(frame);
