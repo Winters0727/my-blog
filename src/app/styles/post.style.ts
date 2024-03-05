@@ -17,7 +17,7 @@ export const PostWrapper = styled.article`
 
 export const PostContentWrapper = styled.section`
   width: 100%;
-  line-height: 24px;
+  line-height: 32px;
 
   & > blockquote,
   h1,
@@ -59,7 +59,6 @@ export const PostContentWrapper = styled.section`
     width: 100%;
     margin: 16px 0;
     font-size: 20px;
-    line-height: 32px;
   }
 
   & > p img {
@@ -89,7 +88,7 @@ export const PostContentWrapper = styled.section`
     color: ${COLORS.success};
   }
 
-  & > figure {
+  & figure {
     font-family: "CommitMono";
     font-size: 1rem;
     font-weight: 700;

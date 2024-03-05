@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import COLORS from "@/app/constant/colors";
 
-export const ProfileWrapper = styled.aside`
+export const ProfileWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import COLORS from "@/app/constant/colors";
 
-export const ClockWrapper = styled.aside<{ $hourFormat: boolean }>`
+export const ClockWrapper = styled.div<{ $hourFormat: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;

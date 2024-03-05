@@ -51,17 +51,15 @@ export const MiddleSection = styled(StyledSection)`
 `;
 
 export const RightSection = styled(StyledSection)`
-  flex-direction: column;
-  align-items: center;
   width: 300px;
-  row-gap: 16px;
 `;
 
-export const RightSubSection = styled(StyledSection)`
+export const RightSectionWrapper = styled.aside`
   display: flex;
   position: sticky;
   top: 10vh;
   flex-direction: column;
+  align-items: center;
   row-gap: 16px;
 `;
 
