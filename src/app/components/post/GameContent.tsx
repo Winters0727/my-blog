@@ -121,7 +121,7 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
 
   return (
     data && (
-      <GameDataWrapper className={theme && theme.mode}>
+      <GameDataWrapper className={theme?.mode}>
         <GameTopWrapper>
           <GameTitle>{title}</GameTitle>
           <TopSubWrapper>

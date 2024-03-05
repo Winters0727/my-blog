@@ -31,7 +31,7 @@ const SeriesList: FC<SeriesListProps> = ({ title, series }) => {
 
   return (
     isClient && (
-      <SeriesWrapper className={theme && theme.mode}>
+      <SeriesWrapper className={theme?.mode}>
         <SeriesTitle>{title}</SeriesTitle>
         <SeriesLinkContainer>
           {series.map((data, index) => (

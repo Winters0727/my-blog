@@ -12,7 +12,7 @@ const VisitComponent: FC = () => {
   const theme = useThemeContext();
 
   return (
-    <VisitWrapper className={theme && theme.mode}>
+    <VisitWrapper className={theme?.mode}>
       <span>today : {visit.today}</span>
       <span>/</span>
       <span>total : {visit.total}</span>

@@ -64,7 +64,7 @@ const ClockComponent: FC = () => {
 
   return (
     <ClockWrapper
-      className={theme && theme.mode}
+      className={theme?.mode}
       $hourFormat={hourFormat}
       onClick={handleClickClock}
     >
@@ -88,7 +88,7 @@ const ClockComponent: FC = () => {
           )}
         </TimeCharWrapper>
       </TimeContainer>
-      <DateContainer className={theme && theme.mode}>
+      <DateContainer className={theme?.mode}>
         <YearWrapper>
           {Array.from(timer.year).map((char, index) => (
             <DateCharacter key={`${char}-${index}-${currentTime}`}>

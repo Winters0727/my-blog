@@ -26,11 +26,11 @@ const PostTitle: FC<PostTitleProps> = ({ title, tags, createdAt }) => {
   dayjs.locale("ko");
 
   return (
-    <PostTitleWrapper className={theme && theme.mode}>
+    <PostTitleWrapper className={theme?.mode}>
       <PostTitleText>{title}</PostTitleText>
       <PostTagContainer>
         {tags.map((tag, index) => (
-          <PostTag className={theme && theme.mode} key={`${index}-${tag}`}>
+          <PostTag className={theme?.mode} key={`${index}-${tag}`}>
             {tag}
           </PostTag>
         ))}

@@ -23,7 +23,7 @@ const ProfileComponent: FC = () => {
   const theme = useThemeContext();
 
   return (
-    <ProfileWrapper className={theme && theme.mode}>
+    <ProfileWrapper className={theme?.mode}>
       <ProfileImage
         src={PROFILE_IMAGE || PROFILE_DEFAULT_IMAGE}
         alt="프로필 이미지"
