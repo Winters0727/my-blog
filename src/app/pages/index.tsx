@@ -18,7 +18,7 @@ import {
   LeftSection,
   MiddleSection,
   RightSection,
-  RightSubSection,
+  RightSectionWrapper,
 } from "@/app/styles/index.style";
 
 import type { NextPage } from "next";
@@ -31,12 +31,12 @@ interface CategoriesWithCount {
 }
 
 const MainPage: NextPage = () => {
-  const posts = [...allPosts];
+  const posts = [...allPosts.filter((post) => post.published)];
 
   const categories: CategoriesWithCount = useMemo(() => {
     const categoriesWithCount: CategoriesWithCount = {};
 
-    for (const post of allPosts) {
+    for (const post of posts) {
       const { category, subCategory } = post;
 
       if (category in categoriesWithCount)
@@ -77,11 +77,11 @@ const MainPage: NextPage = () => {
         <PostList state={state} dispatch={dispatch} />
       </MiddleSection>
       <RightSection>
-        <ProfileComponent />
-        <RightSubSection>
+        <RightSectionWrapper>
+          <ProfileComponent />
           <ClockComponent />
           <VisitComponent />
-        </RightSubSection>
+        </RightSectionWrapper>
       </RightSection>
     </MainWrapper>
   );

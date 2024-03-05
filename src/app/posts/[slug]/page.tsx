@@ -16,19 +16,29 @@ interface PageProps {
     slug: string;
   };
 }
+
+const posts = [...allPosts];
+
+posts.sort(
+  (prev, next) =>
+    new Date(prev.createdAt).getTime() - new Date(next.createdAt).getTime()
+);
+
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+  posts.map((post) => ({ slug: post._raw.flattenedPath }));
 
 const Page: FC<PageProps> = (props) => {
-  const post = allPosts.find(
+  const post = posts.find(
     (post) =>
       encodeURIComponent(post._raw.sourceFileName.replace(".mdx", "")) ===
       props.params.slug
   );
 
-  const MDXComponent = useMDXComponent((post && post.body.code) || "");
+  if (!post || !post.published) notFound();
 
-  return post && post.published ? (
+  const MDXComponent = useMDXComponent(post?.body.code || "");
+
+  return (
     <PostWrapper>
       <PostTitle
         title={post.title}
@@ -39,7 +49,7 @@ const Page: FC<PageProps> = (props) => {
         {post.series && (
           <SeriesList
             title={post.series}
-            series={allPosts.filter(
+            series={posts.filter(
               (comparedPost) => comparedPost.series === post.series
             )}
           />
@@ -50,8 +60,6 @@ const Page: FC<PageProps> = (props) => {
         <MDXComponent />
       </PostContent>
     </PostWrapper>
-  ) : (
-    notFound()
   );
 };
 
