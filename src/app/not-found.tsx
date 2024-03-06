@@ -53,7 +53,7 @@ const NotFound = () => {
         countdownValue -= 1;
         setCountdown((prevValue) => prevValue - 1);
       } else {
-        // router.push("/");
+        router.push("/");
         clearInterval(intervalId);
       }
     };
