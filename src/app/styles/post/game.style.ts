@@ -94,6 +94,8 @@ export const GameTopWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   text-align: center;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
 `;
 
 export const TopSubWrapper = styled.div`
@@ -160,10 +162,6 @@ export const GameImageText = styled.span`
 export const GameMiddleWrapper = styled.div`
   display: flex;
   width: 100%;
-  border-top-width: 5px;
-  border-top-style: solid;
-  border-bottom-width: 5px;
-  border-bottom-style: solid;
 `;
 
 export const GameDataContainer = styled.div`

@@ -52,16 +52,18 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [showImage, setShowImage] = useState(false);
 
-  const trailerUrl = useMemo(() => {
-    if (data && data.videos) {
-      const videos = data.videos.filter(
+  const videoUrl = useMemo(() => {
+    if (data && data.videos?.length) {
+      const trailerVideos = data.videos.filter(
         (video) => video.name.toLowerCase() === "trailer"
       );
 
-      if (videos.length > 0) {
-        const video = videos[0];
+      if (trailerVideos.length > 0) {
+        const video = trailerVideos[0];
         return `https://www.youtube-nocookie.com/embed/${video.video_id}`;
       }
+
+      return data.videos[0].url;
     }
 
     return "";
@@ -175,19 +177,23 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
             </SubDataWrapper>
           </TopSubWrapper>
         </GameTopWrapper>
-        <GameMiddleWrapper>
-          {trailerUrl && (
+        {videoUrl && (
+          <GameMiddleWrapper>
             <YoutubeIframe
-              src={trailerUrl}
-              title={`그랑블루 Trailer Video`}
+              src={videoUrl}
+              title={`${title} Trailer Video`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
-          )}
-        </GameMiddleWrapper>
-        <GameBottomWrapper>
-          {data.artworks && (
+          </GameMiddleWrapper>
+        )}
+        <GameBottomWrapper
+          style={
+            videoUrl ? { borderTopWidth: "5px", borderTopStyle: "solid" } : {}
+          }
+        >
+          {!!data.artworks?.length && (
             <GameDataContainer>
               <GameImageText>아트워크</GameImageText>
               <GameImageContainer>
@@ -203,7 +209,7 @@ const GameContent: FC<GameContentProps> = ({ id, title }) => {
               </GameImageContainer>
             </GameDataContainer>
           )}
-          {data.screenshots && (
+          {!!data.screenshots?.length && (
             <GameDataContainer>
               <GameImageText>스크린샷</GameImageText>
               <GameImageContainer>
