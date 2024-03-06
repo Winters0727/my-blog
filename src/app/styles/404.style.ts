@@ -2,25 +2,51 @@
 
 import styled from "styled-components";
 
+import { tablet, mobile } from "../utils/style.utils";
+
 export const NotFoundWrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  min-width: 1280px;
+  max-width: 1280px;
   height: 100%;
-  margin: 64px 0 auto 0;
+  margin-top: 64px;
+  margin-bottom: auto;
   row-gap: 16px;
+  font-size: 4.5rem;
+
+  ${tablet`{
+    margin-top: 48px;
+    font-size: 3.5rem;
+  }`}
+
+  ${mobile`{
+    margin-top: 32px;
+    font-size: 2.5rem;
+  }`}
 `;
 
 export const NotFoundTitle = styled.div`
-  font-size: 5rem;
   font-weight: 700;
 `;
 
 export const NotFoundText = styled.div`
-  font-size: 5rem;
   font-weight: 500;
+`;
+
+export const NotFoundCanvas = styled.canvas`
+  width: 500px;
+  height: 500px;
+
+  ${tablet`{
+    width: 400px;
+    height: 400px;
+  }`}
+
+  ${mobile`{
+    width: 300px;
+    height: 300px;
+  }`}
 `;
 
 export const NotFoundImage = styled.img`

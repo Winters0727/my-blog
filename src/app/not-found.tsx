@@ -11,6 +11,7 @@ import {
   NotFoundWrapper,
   NotFoundTitle,
   NotFoundText,
+  NotFoundCanvas,
   NotFoundImage,
 } from "@/app/styles/404.style";
 
@@ -37,12 +38,13 @@ const NotFound = () => {
     if (canvas && image1 && image2 && image3 && image4) {
       const app = new CanvasApp({
         canvas,
-        width: 500,
-        height: 500,
+        width: canvas.clientWidth,
+        height: canvas.clientHeight,
         frames: [image1, image2, image3, image4],
         times: [5, 1, 1, 5],
       });
 
+      app.init();
       app.render();
     }
 
@@ -51,7 +53,7 @@ const NotFound = () => {
         countdownValue -= 1;
         setCountdown((prevValue) => prevValue - 1);
       } else {
-        router.push("/");
+        // router.push("/");
         clearInterval(intervalId);
       }
     };
@@ -65,7 +67,7 @@ const NotFound = () => {
     <NotFoundWrapper>
       <NotFoundTitle>404 Not Found</NotFoundTitle>
       <NotFoundText>{countdown}초 후 메인페이지로 이동합니다.</NotFoundText>
-      <canvas width={500} height={500} ref={canvasRef} />
+      <NotFoundCanvas ref={canvasRef} />
       <NotFoundImage
         style={{ display: "none" }}
         ref={imageRef1}

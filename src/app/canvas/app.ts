@@ -31,6 +31,11 @@ export default class App {
     });
   }
 
+  init() {
+    this.canvas.width = this.width * this.dpr;
+    this.canvas.height = this.height * this.dpr;
+  }
+
   render() {
     let now, delta;
     let then = Date.now();
