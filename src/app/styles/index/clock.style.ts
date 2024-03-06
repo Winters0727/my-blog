@@ -6,13 +6,12 @@ import { tablet, mobile } from "@/app/utils/style.utils";
 
 import COLORS from "@/app/constant/colors";
 
-export const ClockWrapper = styled.div<{ $hourFormat: boolean }>`
+export const ClockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 8px 16px;
-  width: inherit;
-  min-width: 240px;
+  width: 100%;
   height: fit-content;
   font-family: "DSDigital";
   font-weight: 700;
@@ -34,7 +33,6 @@ export const ClockWrapper = styled.div<{ $hourFormat: boolean }>`
 
   ${tablet`{
     padding: 4px 10px;
-    min-width: 180px;
     border-width: 4px;
     border-radius: 12px;
     box-shadow: 3px 3px 7px;
@@ -42,7 +40,6 @@ export const ClockWrapper = styled.div<{ $hourFormat: boolean }>`
 
   ${mobile`{
     padding: 4px;
-    min-width: 120px;
     border-width: 3px;
     border-radius: 8px;
     box-shadow: 1px 1px 4px;

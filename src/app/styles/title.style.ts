@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { tablet, mobile } from "@/app/utils/style.utils";
+
 import COLORS from "@/app/constant/colors";
 
 const { light, dark } = COLORS.theme;
@@ -30,6 +32,14 @@ export const TitleWrapper = styled.div`
       align-items: center;
     }
   }
+
+  ${tablet`{
+    height: 15vh;
+  }`}
+
+  ${mobile`{
+    height: 10vh;
+  }`}
 `;
 
 export const TitleText = styled.div`
@@ -37,4 +47,12 @@ export const TitleText = styled.div`
   font-size: 5rem;
   text-align: center;
   word-break: keep-all;
+
+  ${tablet`{
+    font-size: 4rem;
+  }`}
+
+  ${mobile`{
+    font-size: 3rem;
+  }`}
 `;

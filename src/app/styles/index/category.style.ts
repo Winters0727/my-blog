@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { tablet, mobile } from "@/app/utils/style.utils";
+
 import COLORS from "@/app/constant/colors";
 
 const { light, dark } = COLORS.theme;
@@ -14,6 +16,14 @@ export const TagListWrapper = styled.ol`
   row-gap: 12px;
   color: ${COLORS.white};
   list-style-type: none;
+
+  ${tablet`{
+    row-gap: 10px;
+  }`}
+
+  ${mobile`{
+    row-gap: 8px;
+  }`}
 `;
 
 export const CategoryWrapper = styled.div`
@@ -57,6 +67,15 @@ export const TagWrapper = styled.div`
       background-color: ${dark.tagHover};
     }
   }
+
+  ${tablet`{
+    padding: 14px 20px;
+  }`}
+
+  ${mobile`{
+    border-radius: 4px;
+    padding: 8px;
+  }`}
 `;
 
 export const SubTagListWrapper = styled.ol`
@@ -66,6 +85,18 @@ export const SubTagListWrapper = styled.ol`
   margin-bottom: 8px;
   row-gap: 12px;
   list-style-type: none;
+
+  ${tablet`{
+    margin-top: 14px;
+    margin-bottom: 6px;
+    row-gap: 10px;
+  }`}
+
+  ${mobile`{
+    margin-top: 12px;
+    margin-bottom: 4px;
+    row-gap: 8px;
+  }`}
 `;
 
 export const SubTagWrapper = styled.div`
@@ -104,22 +135,62 @@ export const SubTagWrapper = styled.div`
       background-color: ${dark.subTagHover};
     }
   }
+
+  ${tablet`{
+    padding: 10px;
+  }`}
+
+  ${mobile`{
+    padding: 8px;
+  }`}
 `;
 
 export const TagText = styled.span`
   font-size: 1.5rem;
+
+  ${tablet`{
+    font-size: 1.4rem;
+  }`}
+
+  ${mobile`{
+    font-size: 1.2rem;
+  }`}
 `;
 
 export const TagCount = styled.span`
   margin-left: auto;
   font-size: 1.2rem;
+
+  ${tablet`{
+    font-size: 1.1rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.9rem;
+  }`}
 `;
 
 export const SubTagText = styled.span`
   font-size: 1.3rem;
+
+  ${tablet`{
+    font-size: 1.2rem;
+  }`}
+
+  ${mobile`{
+    font-size: 1rem;
+  }`}
 `;
 
 export const SubTagCount = styled.span`
   margin-left: auto;
   font-size: 1.1rem;
+
+  ${tablet`{
+    font-size. 1rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.9rem;
+  }`}
 `;

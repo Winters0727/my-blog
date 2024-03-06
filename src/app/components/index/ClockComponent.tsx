@@ -63,11 +63,7 @@ const ClockComponent: FC = () => {
   }, []);
 
   return (
-    <ClockWrapper
-      className={theme?.mode}
-      $hourFormat={hourFormat}
-      onClick={handleClickClock}
-    >
+    <ClockWrapper className={theme?.mode} onClick={handleClickClock}>
       <TimeContainer>
         {hourFormat && (
           <TimeFormatWrapper>

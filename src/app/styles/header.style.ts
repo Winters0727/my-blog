@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
+import { tablet, mobile } from "../utils/style.utils";
+
 export const HeaderWrapper = styled.header`
   display: flex;
   position: sticky;
   top: 0;
   width: 100%;
   margin-bottom: 32px;
-  padding: 16px 32px;
-  min-width: 320px;
-  max-width: 1280px;
+  padding: 16px 0;
   justify-content: center;
   align-items: center;
+
+  ${tablet`{
+    margin-bottom: 28px;
+  }`}
+
+  ${mobile`{
+    margin-bottom: 24px;
+  }`}
 `;
 
 export const HeaderBlur = styled.div`
@@ -36,12 +44,22 @@ export const HeaderSpace = styled.div`
 
 export const ModeContainer = styled.div`
   display: flex;
-  width: 120px;
   z-index: 3;
+  margin-right: 48px;
 `;
 
 export const ModeChangeImage = styled.img`
   width: 48px;
   height: 48px;
   cursor: pointer;
+
+  ${tablet`{
+    width: 44px;
+    height: 44px;
+  }`}
+
+  ${mobile`{
+    width: 40px;
+    height: 40px;
+  }`}
 `;

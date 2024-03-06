@@ -50,13 +50,13 @@ export const ProfileContainer = styled.div`
   row-gap: 12px;
 
   ${tablet`{
-    padding: 14px;
+    padding: 10px;
     font-size: 1rem;
     row-gap: 10px;
   }`}
 
   ${mobile`{
-    padding: 12px;
+    padding: 4px;
     font-size: 0.6rem;
     row-gap: 8px;
   }`}

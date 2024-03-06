@@ -26,6 +26,6 @@ export const VisitWrapper = styled.div`
   }`}
 
   ${mobile`{
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }`}
 `;
