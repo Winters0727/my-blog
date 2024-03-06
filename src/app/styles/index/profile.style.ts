@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+import { tablet, mobile } from "@/app/utils/style.utils";
+
 import COLORS from "@/app/constant/colors";
 
 export const ProfileWrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: inherit;
   flex-direction: column;
   border-width: 5px;
   border-style: solid;
@@ -17,12 +19,28 @@ export const ProfileWrapper = styled.div`
   .dark {
     border-color: ${COLORS.black};
   }
+
+  ${tablet`{
+    border-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-width: 3px;
+  }`}
 `;
 
 export const ProfileImage = styled.img`
   width: 100%;
   height: auto;
   max-height: 300px;
+
+  ${tablet`{
+    max-height: 200px;
+  }`}
+
+  ${mobile`{
+    max-height: 100px;
+  }`}
 `;
 
 export const ProfileContainer = styled.div`
@@ -30,10 +48,30 @@ export const ProfileContainer = styled.div`
   flex-direction: column;
   padding: 16px;
   row-gap: 12px;
+
+  ${tablet`{
+    padding: 14px;
+    font-size: 1rem;
+    row-gap: 10px;
+  }`}
+
+  ${mobile`{
+    padding: 12px;
+    font-size: 0.6rem;
+    row-gap: 8px;
+  }`}
 `;
 
 export const ProfileName = styled.div`
   font-size: 2rem;
+
+  ${tablet`{
+    font-size: 1.6rem;
+  }`}
+
+  ${mobile`{
+    font-size: 1rem;
+  }`}
 `;
 
 export const ProfileDesciption = styled.div`
@@ -42,5 +80,21 @@ export const ProfileDesciption = styled.div`
 
   & > p {
     line-height: 24px;
+
+    ${tablet`{
+      line-height: 20px;
+    }`}
+
+    ${mobile`{
+      line-height: 12px;
+    }`}
   }
+
+  ${tablet`{
+    font-size: 1rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.6rem;
+  }`}
 `;
