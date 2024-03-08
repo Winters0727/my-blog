@@ -13,16 +13,19 @@ import Title from "@/app/components/Title";
 import Footer from "@/app/components/Footer";
 import BlockContextMenu from "@/app/components/BlockContextMenu";
 
+import { SITE_TITLE, SITE_DESCRIPTION, OPEN_GRAPH } from "./constant";
+
 import { PageWrapper } from "./styles/index.style";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Winters의 블로그에 어서오세요 :)",
-  description: "FE 개발자 Winters의 블로그입니다.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   icons: {
     icon: "/images/favicon.ico",
   },
+  openGraph: OPEN_GRAPH,
   other: {
     "naver-site-verification":
       process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "",

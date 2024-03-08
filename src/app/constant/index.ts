@@ -1,3 +1,22 @@
+export const SITE_TITLE = "Winters의 블로그에 어서오세요 :)";
+export const SITE_DESCRIPTION = "FE 개발자 Winters의 블로그입니다.";
+
+export const OPEN_GRAPH = {
+  title: "Winters의 블로그에 어서오세요 :)",
+  description: "FE 개발자 Winters의 블로그입니다.",
+  url: "https://blog.winters0727.kr",
+  siteName: "Winters의 잡동사니 창고",
+  images: [
+    {
+      url: "/images/open-graph.jpeg",
+      width: 200,
+      height: 200,
+    },
+  ],
+  locale: "ko_KR",
+  type: "website",
+};
+
 export const TITLE = "Winters의 잡동사니 창고";
 
 export const FOOTER_PRE_TEXT = "Copyright 2024. Winters0727.";
