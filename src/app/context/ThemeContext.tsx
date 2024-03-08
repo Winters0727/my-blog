@@ -2,7 +2,7 @@
 import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "styled-components";
 
-type ThemeMode = "light" | "dark";
+import type { ThemeMode } from "@/app/types/theme.type";
 
 interface ThemeContext {
   mode: ThemeMode;
