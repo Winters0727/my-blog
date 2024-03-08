@@ -7,6 +7,7 @@ import CategoryComponent from "./CategoryComponent";
 import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
+  CategoryWrapper,
   TagListWrapper,
   TagWrapper,
   TagText,
@@ -46,21 +47,23 @@ const CategoryList: FC<CategoryListProps> = ({
 
   return (
     <TagListWrapper>
-      <TagWrapper
-        className={
-          theme && isTagNotSelected
-            ? [theme.mode, "selected"].join(" ")
-            : theme.mode
-        }
-        onClick={() =>
-          dispatch({
-            type: "SELECT_CATEGORY",
-            payload: { category: "" },
-          })
-        }
-      >
-        <TagText>전체보기</TagText>
-      </TagWrapper>
+      <CategoryWrapper>
+        <TagWrapper
+          className={
+            theme && isTagNotSelected
+              ? [theme.mode, "selected"].join(" ")
+              : theme.mode
+          }
+          onClick={() =>
+            dispatch({
+              type: "SELECT_CATEGORY",
+              payload: { category: "" },
+            })
+          }
+        >
+          <TagText>전체보기</TagText>
+        </TagWrapper>
+      </CategoryWrapper>
       {categoryKeys.map((category) => {
         const categoryData = categories[category];
 

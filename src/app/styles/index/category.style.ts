@@ -40,12 +40,12 @@ export const MobileTagListWrapper = styled.ol`
   }`}
 `;
 
-export const CategoryWrapper = styled.div`
+export const CategoryWrapper = styled.li`
   display: flex;
   flex-direction: column;
 `;
 
-export const TagWrapper = styled.li`
+export const TagWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -8,6 +8,7 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
   MobileTagListWrapper,
+  CategoryWrapper,
   TagWrapper,
   TagText,
 } from "@/app/styles/index/category.style";
@@ -48,21 +49,23 @@ const MobileCategoryList: FC<CategoryListProps> = ({
 
   return (
     <MobileTagListWrapper>
-      <TagWrapper
-        className={
-          theme && isTagNotSelected
-            ? [theme.mode, "selected"].join(" ")
-            : theme.mode
-        }
-        onClick={() =>
-          dispatch({
-            type: "SELECT_CATEGORY",
-            payload: { category: "" },
-          })
-        }
-      >
-        <TagText>전체보기</TagText>
-      </TagWrapper>
+      <CategoryWrapper>
+        <TagWrapper
+          className={
+            theme && isTagNotSelected
+              ? [theme.mode, "selected"].join(" ")
+              : theme.mode
+          }
+          onClick={() =>
+            dispatch({
+              type: "SELECT_CATEGORY",
+              payload: { category: "" },
+            })
+          }
+        >
+          <TagText>전체보기</TagText>
+        </TagWrapper>
+      </CategoryWrapper>
       {categoryKeys.map((category) => {
         const categoryData = categories[category];
 
