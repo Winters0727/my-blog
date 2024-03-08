@@ -175,6 +175,10 @@ export const TagText = styled.span`
   ${mobile`{
     font-size: 1.2rem;
   }`}
+
+  ${xMobile`{
+    font-size: 1.3rem;
+  }`}
 `;
 
 export const TagCount = styled.span`
@@ -187,6 +191,10 @@ export const TagCount = styled.span`
 
   ${mobile`{
     font-size: 0.9rem;
+  }`}
+
+  ${xMobile`{
+    font-size: 1.1rem;  
   }`}
 `;
 
