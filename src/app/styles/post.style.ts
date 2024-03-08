@@ -12,6 +12,7 @@ export const PostWrapper = styled.article`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 1280px;
   margin: 64px 0;
   padding: 0 32px;
   font-family: "BaeminDoHyeon";
