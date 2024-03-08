@@ -57,7 +57,7 @@ const PostComponent: FC<PostProps> = ({ post }) => {
         <PostInfo>{dateDifference}</PostInfo>
       </PostInfoArea>
       <PostImageArea>
-        <PostThumbnail src={thumbnail} />
+        <PostThumbnail src={thumbnail} alt={`${title}-thumbnail-image`} />
       </PostImageArea>
     </PostContainer>
   );

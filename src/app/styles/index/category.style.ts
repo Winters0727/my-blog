@@ -45,7 +45,7 @@ export const CategoryWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const TagWrapper = styled.div`
+export const TagWrapper = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,7 +119,7 @@ export const SubTagListWrapper = styled.ol`
   }`}
 `;
 
-export const SubTagWrapper = styled.div`
+export const SubTagWrapper = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -30,15 +30,17 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileImage = styled.img`
-  width: 100%;
+  width: 300px;
   height: auto;
   max-height: 300px;
 
   ${tablet`{
+    width: 200px;
     max-height: 200px;
   }`}
 
   ${mobile`{
+    width: 100px;
     max-height: 100px;
   }`}
 `;
@@ -86,7 +88,7 @@ export const ProfileDesciption = styled.div`
     }`}
 
     ${mobile`{
-      line-height: 12px;
+      line-height: 10px;
     }`}
   }
 
@@ -95,6 +97,6 @@ export const ProfileDesciption = styled.div`
   }`}
 
   ${mobile`{
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }`}
 `;
