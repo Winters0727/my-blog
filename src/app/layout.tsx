@@ -13,13 +13,19 @@ import Title from "@/app/components/Title";
 import Footer from "@/app/components/Footer";
 import BlockContextMenu from "@/app/components/BlockContextMenu";
 
-import { SITE_TITLE, SITE_DESCRIPTION, OPEN_GRAPH } from "./constant";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  OPEN_GRAPH,
+  METADATA_BASE_URL,
+} from "./constant";
 
 import { PageWrapper } from "./styles/index.style";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: METADATA_BASE_URL,
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   icons: {

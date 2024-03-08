@@ -1,3 +1,5 @@
+export const METADATA_BASE_URL = new URL("https://blog.winters0727.kr");
+
 export const SITE_TITLE = "Winters의 블로그에 어서오세요 :)";
 export const SITE_DESCRIPTION = "FE 개발자 Winters의 블로그입니다.";
 
