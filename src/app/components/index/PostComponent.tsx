@@ -8,8 +8,8 @@ import { useThemeContext } from "@/app/context/ThemeContext";
 
 import {
   PostContainer,
-  PostLeftArea,
-  PostRightArea,
+  PostInfoArea,
+  PostImageArea,
   PostTitle,
   PostDescription,
   PostThumbnail,
@@ -51,14 +51,14 @@ const PostComponent: FC<PostProps> = ({ post }) => {
 
   return (
     <PostContainer className={theme?.mode}>
-      <PostLeftArea>
+      <PostInfoArea>
         <PostTitle>{title}</PostTitle>
         <PostDescription>{description}</PostDescription>
         <PostInfo>{dateDifference}</PostInfo>
-      </PostLeftArea>
-      <PostRightArea>
+      </PostInfoArea>
+      <PostImageArea>
         <PostThumbnail src={thumbnail} />
-      </PostRightArea>
+      </PostImageArea>
     </PostContainer>
   );
 };

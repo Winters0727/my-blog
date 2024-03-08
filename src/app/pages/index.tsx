@@ -5,6 +5,7 @@ import { allPosts } from "contentlayer/generated";
 
 import PostList from "@/app/components/index/PostList";
 import CategoryList from "@/app/components/index/CategoryList";
+import MobileCategoryList from "@/app/components/index/MobileCategoryList";
 import ProfileComponent from "@/app/components/index/ProfileComponent";
 import ClockComponent from "@/app/components/index/ClockComponent";
 import VisitComponent from "@/app/components/index/VisitComponent";
@@ -15,6 +16,7 @@ import { POST_COUNT } from "@/app/constant/post";
 
 import {
   MainWrapper,
+  TopSection,
   LeftSection,
   MiddleSection,
   RightSection,
@@ -66,6 +68,13 @@ const MainPage: NextPage = () => {
 
   return (
     <MainWrapper>
+      <TopSection>
+        <MobileCategoryList
+          state={state}
+          dispatch={dispatch}
+          categories={categories}
+        />
+      </TopSection>
       <LeftSection>
         <CategoryList
           state={state}

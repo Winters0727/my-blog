@@ -13,14 +13,16 @@ import type { FC } from "react";
 interface CategoryTagProps {
   category: string;
   count: number;
-  isSubTagsShown: boolean;
+  isMobile?: boolean;
+  isSelected: boolean;
   onClick: (e: React.MouseEvent) => void;
 }
 
 const CategoryMainTag: FC<CategoryTagProps> = ({
   category,
   count,
-  isSubTagsShown,
+  isMobile,
+  isSelected,
   onClick,
 }) => {
   const theme = useThemeContext();
@@ -28,14 +30,12 @@ const CategoryMainTag: FC<CategoryTagProps> = ({
   return (
     <TagWrapper
       className={
-        theme && isSubTagsShown
-          ? [theme.mode, "selected"].join(" ")
-          : theme.mode
+        theme && isSelected ? [theme.mode, "selected"].join(" ") : theme.mode
       }
       onClick={onClick}
     >
       <TagText>{category}</TagText>
-      {!isSubTagsShown && <TagCount>({count})</TagCount>}
+      {(isMobile || !isSelected) && <TagCount>({count})</TagCount>}
     </TagWrapper>
   );
 };

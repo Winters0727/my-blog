@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 
 import CategoryMainTag from "@/app/components/index/categoryTags/CategoryMainTag";
 import CategorySubTag from "@/app/components/index/categoryTags/CategorySubTag";
@@ -34,7 +34,10 @@ const CategoryComponent: FC<CategoryProps> = ({
   category,
   categoryData,
 }) => {
-  const [showSubTags, setShowSubTags] = useState(false);
+  const isSelected = useMemo(
+    () => category === state.category,
+    [category, state.category]
+  );
 
   const checkTagSelected = (attrs: CategoryAttributes) =>
     state.category === attrs.category &&
@@ -43,8 +46,6 @@ const CategoryComponent: FC<CategoryProps> = ({
   const handleClickMainTag = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
-    if (!showSubTags) setShowSubTags(true);
 
     if (state.category !== category) {
       dispatch({
@@ -70,19 +71,15 @@ const CategoryComponent: FC<CategoryProps> = ({
 
   subCategoryKeys.sort((prev, next) => categoryData[next] - categoryData[prev]);
 
-  useEffect(() => {
-    if (showSubTags && category !== state.category) setShowSubTags(false);
-  }, [state.category]);
-
   return (
     <CategoryWrapper key={category}>
       <CategoryMainTag
         category={category}
         count={categoryData.totalCount}
-        isSubTagsShown={showSubTags}
+        isSelected={isSelected}
         onClick={handleClickMainTag}
       />
-      {showSubTags && (
+      {isSelected && (
         <SubTagListWrapper>
           {subCategoryKeys.map((subCategory) => (
             <CategorySubTag

@@ -20,6 +20,7 @@ export interface MainAction {
     posts?: Post[];
     category?: string;
     subCategory?: string;
+    isMobile?: boolean;
   };
 }
 
@@ -27,10 +28,17 @@ export const MainReducer = (state: MainState, action: MainAction) => {
   switch (action.type) {
     case "SELECT_CATEGORY":
       if (action.payload) {
-        const { category } = action.payload;
+        const { category, isMobile } = action.payload;
 
         if (category) {
           state.category = category;
+
+          if (isMobile) {
+            state.categorizedPosts = state.totalPosts.filter(
+              (post) => post.category === category
+            );
+            state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
+          }
         } else {
           state.category = "";
           state.subCategory = "";

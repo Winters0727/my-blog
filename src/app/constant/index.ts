@@ -1,5 +1,8 @@
 export const TITLE = "Winters의 잡동사니 창고";
 
+export const FOOTER_PRE_TEXT = "Copyright 2024. Winters0727.";
+export const FOOTER_POST_TEXT = "All rights reserved.";
+
 export const BACKGROUND_IMAGE = "";
 
 export const PROFILE_IMAGE = "";
