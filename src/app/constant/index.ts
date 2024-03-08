@@ -5,7 +5,7 @@ export const FOOTER_POST_TEXT = "All rights reserved.";
 
 export const BACKGROUND_IMAGE = "";
 
-export const PROFILE_IMAGE = "";
+export const PROFILE_IMAGE = "/images/profile.jpeg";
 
 export const PROFILE_DEFAULT_IMAGE = "/images/default-profile.png";
 
