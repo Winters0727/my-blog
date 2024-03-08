@@ -24,6 +24,8 @@ export default class App {
     this.ctx = canvas.getContext("2d");
     this.character = new Character({
       context: this.ctx,
+      canvasWidth: this.width,
+      canvasHeight: this.height,
       frames,
       times,
       x: 0,
