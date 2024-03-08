@@ -15,19 +15,17 @@ import BlockContextMenu from "@/app/components/BlockContextMenu";
 
 import { PageWrapper } from "./styles/index.style";
 
-interface CustomMetadata extends Metadata {
-  "naver-site-verification": string;
-}
-
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: CustomMetadata = {
+export const metadata: Metadata = {
   title: "Winters의 블로그에 어서오세요 :)",
   description: "FE 개발자 Winters의 블로그입니다.",
-  "naver-site-verification":
-    process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "",
   icons: {
     icon: "/images/favicon.ico",
+  },
+  other: {
+    "naver-site-verification":
+      process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "",
   },
 };
 
