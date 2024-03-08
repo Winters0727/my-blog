@@ -2,6 +2,8 @@
 
 import styled from "styled-components";
 
+import { mobile, sMobile, xMobile } from "../utils/style.utils";
+
 import COLORS from "@/app//constant/colors";
 
 const { light, dark } = COLORS.theme;
@@ -11,13 +13,31 @@ export const PostWrapper = styled.article`
   flex-direction: column;
   width: 100%;
   margin: 64px 0;
+  padding: 0 32px;
   font-family: "BaeminDoHyeon";
-  }
+
+  ${mobile`{
+    margin: 48px 0;
+    padding: 0 24px;
+  }`}
+
+  ${xMobile`{
+    margin: 32px 0;
+    padding: 0 16px;
+  }`}
 `;
 
 export const PostContentWrapper = styled.section`
   width: 100%;
   line-height: 32px;
+
+  ${mobile`{
+    line-height: 28px;
+  }`}
+
+  ${xMobile`{
+    line-height: 22px;
+  }`}
 
   & > blockquote,
   h1,
@@ -32,33 +52,91 @@ export const PostContentWrapper = styled.section`
 
   & > h1 {
     font-size: 2.5rem;
+
+    ${mobile`{
+      font-size: 2.2rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 1.8rem;
+    }`}
   }
 
   & > h2 {
     font-size: 2rem;
+
+    ${mobile`{
+      font-size: 1.8rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 1.5rem;
+    }`}
   }
 
   & > h3 {
     font-size: 1.75rem;
+
+    ${mobile`{
+      font-size: 1.5rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 1.2rem;
+    }`}
   }
 
   & > h4 {
     font-size: 1.5rem;
+
+    ${mobile`{
+      font-size: 1.3rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 1rem;
+    }`}
   }
 
   & > h5 {
     font-size: 1.25rem;
+
+    ${mobile`{
+      font-size: 1rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 0.8rem;
+    }`}
   }
 
   & > h6 {
     font-size: 1rem;
+
+    ${mobile`{
+      font-size: 0.8rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 0.6rem;
+    }`}
   }
 
   & > p {
     display: block;
     width: 100%;
     margin: 16px 0;
-    font-size: 20px;
+    font-size: 1.3rem;
+
+    ${mobile`{
+      margin: 12px 0;
+      font-size: 1.1rem;
+    }`}
+
+    ${xMobile`{
+      margin: 8px 0;
+      font-size: 0.8rem;
+    }`}
   }
 
   & > p img {
@@ -98,7 +176,33 @@ export const PostContentWrapper = styled.section`
     & pre {
       padding: 32px;
       border-radius: 8px;
+
+      ${mobile`{
+        padding: 24px;
+      }`}
+
+      ${xMobile`{
+        padding: 16px;
+      }`}
     }
+
+    ${mobile`{
+      padding: 12px;
+      font-size: 0.7rem;
+      line-height: 16px;
+    }`}
+
+    ${xMobile`{
+      padding: 8px;
+      font-size: 0.5rem;
+      line-height: 12px;
+    }`}
+
+    ${sMobile`{
+      padding: 4px;
+      font-size: 0.4rem;
+      line-height: 8px;
+    }`}
   }
 
   & > p blockquote {
@@ -115,6 +219,14 @@ export const PostContentWrapper = styled.section`
   & > ul {
     font-size: 1.2rem;
     list-style: square;
+
+    ${mobile`{
+      font-size: 1rem;
+    }`}
+
+    ${xMobile`{
+      font-size: 0.8rem;
+    }`}
 
     & li {
       margin: 12px auto;
@@ -170,13 +282,20 @@ export const PostTitleWrapper = styled.div`
   width: 100%;
   padding: 32px 0;
   row-gap: 16px;
-  word-break: keep-word;
+
+  ${mobile`{
+    padding: 24px 0;
+  }`}
 `;
 
 export const PostTitleText = styled.div`
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
+
+  ${mobile`{
+    font-size: 2rem;
+  }`}
 `;
 
 export const PostTagContainer = styled.div`
@@ -194,6 +313,11 @@ export const PostTag = styled.span`
   border-radius: 32px;
   cursor: pointer;
 
+  ${mobile`{
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }`}
+
   &.light {
     background-color: ${COLORS.primary};
   }
@@ -206,4 +330,8 @@ export const PostTag = styled.span`
 export const PostTitleDate = styled.div`
   font-size: 1.2rem;
   margin-left: auto;
+
+  ${mobile`{
+    font-size: 1rem;
+  }`}
 `;

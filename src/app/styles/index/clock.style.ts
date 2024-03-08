@@ -56,12 +56,12 @@ export const TimeContainer = styled.div`
 
   ${tablet`{
     column-gap: 10px;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }`}
 
   ${mobile`{
     column-gap: 8px;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }`}
 `;
 
@@ -74,7 +74,7 @@ export const TimeFormatWrapper = styled.div`
   }`}
 
   ${mobile`{
-    font-size: 1.2rem;
+    font-size: 1rem;
   }`}
 `;
 
@@ -102,12 +102,14 @@ export const DateContainer = styled.div`
   }
 
   ${tablet`{
+    padding-top: 6px;
     font-size: 1.4rem;
     border-top-width: 4px;
   }`}
 
   ${mobile`{
-    font-size: 0.8rem;
+    padding-top: 4px;
+    font-size: 0.7rem;
     border-top-width: 3px;
   }`}
 `;

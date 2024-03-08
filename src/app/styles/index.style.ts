@@ -14,7 +14,6 @@ export const PageWrapper = styled.main`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  max-width: 1280px;
   height: 100%;
   min-height: 100vh;
 
@@ -26,19 +25,12 @@ export const PageWrapper = styled.main`
     color: inherit;
     text-decoration: none;
   }
-
-  ${tablet`{
-    max-width: 920px;
-  }`}
-
-  ${mobile`{
-    max-width: 640px;
-  }`}
 `;
 
 export const MainWrapper = styled.section`
   display: flex;
   width: 100%;
+  max-width: 1280px;
   height: 100%;
   justify-content: space-around;
   margin-top: 64px;
@@ -48,12 +40,14 @@ export const MainWrapper = styled.section`
   font-family: "BaeminJua";
 
   ${tablet`{
+    max-width: 920px;
     margin-top: 48px;
     padding: 0 20px;
     column-gap: 28px;
   }`}
 
   ${mobile`{
+    max-width: 680px;
     margin-top: 32px;
     padding: 0 16px;
     column-gap: 16px;
