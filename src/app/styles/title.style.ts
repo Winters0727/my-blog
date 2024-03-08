@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { tablet, mobile } from "@/app/utils/style.utils";
+import { tablet, mobile, xMobile } from "@/app/utils/style.utils";
 
 import COLORS from "@/app/constant/colors";
 
@@ -40,6 +40,10 @@ export const TitleWrapper = styled.div`
   ${mobile`{
     height: 10vh;
   }`}
+
+  ${xMobile`{
+    height: 5vh;
+  }`}
 `;
 
 export const TitleText = styled.div`
@@ -54,5 +58,9 @@ export const TitleText = styled.div`
 
   ${mobile`{
     font-size: 3rem;
+  }`}
+
+  ${xMobile`{
+    font-size: 2rem;
   }`}
 `;

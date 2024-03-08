@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { tablet, mobile } from "@/app/utils/style.utils";
+import { tablet, mobile, xMobile } from "@/app/utils/style.utils";
 
 import COLORS from "@/app/constant/colors";
 
@@ -23,6 +23,20 @@ export const TagListWrapper = styled.ol`
 
   ${mobile`{
     row-gap: 8px;
+  }`}
+`;
+
+export const MobileTagListWrapper = styled.ol`
+  display: none;
+  color: ${COLORS.white};
+  list-style-type: none;
+
+  ${xMobile`{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    column-gap: 16px;
+    overflow-x: auto;
   }`}
 `;
 
@@ -75,6 +89,12 @@ export const TagWrapper = styled.div`
   ${mobile`{
     border-radius: 4px;
     padding: 8px;
+  }`}
+
+  ${xMobile`{
+    min-width: 100px;
+    padding: 16px;
+    border-radius: 8px;
   }`}
 `;
 

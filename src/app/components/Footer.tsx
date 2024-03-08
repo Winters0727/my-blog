@@ -2,9 +2,12 @@
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 
+import { FOOTER_PRE_TEXT, FOOTER_POST_TEXT } from "@/app/constant";
+
 import {
   FooterWrapper,
   FooterText,
+  FooterMobileText,
   IconContainer,
   IconImage,
 } from "@/app/styles/footer.style";
@@ -12,8 +15,6 @@ import {
 import type { FC } from "react";
 
 const Footer: FC = () => {
-  const FOOTER_TEXT = "Copyright 2024. Winters0727. All rights reserved.";
-
   const THEME_DATA = {
     github: {
       light: "/images/icons/github-light.svg",
@@ -45,7 +46,14 @@ const Footer: FC = () => {
           </a>
         </IconContainer>
       )}
-      <FooterText>{FOOTER_TEXT}</FooterText>
+      <FooterText>
+        {FOOTER_PRE_TEXT} {FOOTER_POST_TEXT}
+      </FooterText>
+      <FooterMobileText>
+        {FOOTER_PRE_TEXT}
+        <br />
+        {FOOTER_POST_TEXT}
+      </FooterMobileText>
     </FooterWrapper>
   );
 };

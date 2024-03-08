@@ -67,10 +67,10 @@ export const TimeContainer = styled.div`
 
 export const TimeFormatWrapper = styled.div`
   display: flex;
-  font-size: 2rem;
+  font-size: 3rem;
 
   ${tablet`{
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }`}
 
   ${mobile`{
@@ -89,7 +89,7 @@ export const DateContainer = styled.div`
   justify-content: space-around;
   padding-top: 8px;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 2rem;
   border-top-width: 5px;
   border-style: solid;
 
@@ -102,12 +102,12 @@ export const DateContainer = styled.div`
   }
 
   ${tablet`{
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     border-top-width: 4px;
   }`}
 
   ${mobile`{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border-top-width: 3px;
   }`}
 `;

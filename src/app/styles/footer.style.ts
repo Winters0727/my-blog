@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { tablet, mobile } from "../utils/style.utils";
+import { tablet, mobile, xMobile } from "../utils/style.utils";
 
 export const FooterWrapper = styled.footer`
   display: flex;
@@ -56,5 +56,20 @@ export const FooterText = styled.div`
 
   ${mobile`{
     font-size: 1rem;
+  }`}
+
+  ${xMobile`{
+    display: none;
+  }`}
+`;
+
+export const FooterMobileText = styled.div`
+  display: none;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 20px;
+
+  ${xMobile`{
+    display: block;
   }`}
 `;
