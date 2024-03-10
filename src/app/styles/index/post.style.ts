@@ -4,7 +4,7 @@ import { tablet, mobile, xMobile } from "@/app/utils/style.utils";
 
 import COLORS from "@/app/constant/colors";
 
-const HoverAnimation = keyframes`
+const PostHoverAnimation = keyframes`
   0% {
     transform: scale(1);
   }
@@ -33,7 +33,7 @@ export const PostContainer = styled.article`
   }
 
   &:hover {
-    animation: ${HoverAnimation} 0.5s forwards;
+    animation: ${PostHoverAnimation} 0.5s forwards;
   }
 
   ${tablet`{

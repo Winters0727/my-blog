@@ -9,8 +9,6 @@ const { light, dark } = COLORS.theme;
 export const TagListWrapper = styled.ol`
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 10vh;
   width: 100%;
   height: fit-content;
   row-gap: 12px;

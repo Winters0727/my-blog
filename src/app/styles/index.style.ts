@@ -38,6 +38,7 @@ export const MainWrapper = styled.section`
   padding: 0 24px;
   column-gap: 32px;
   font-family: "BaeminJua";
+  overflow-x: hidden;
 
   ${tablet`{
     max-width: 920px;
@@ -50,7 +51,7 @@ export const MainWrapper = styled.section`
     max-width: 680px;
     margin-top: 32px;
     padding: 0 16px;
-    column-gap: 16px;
+    column-gap: 24px;
   }`}
 
   ${xMobile`{
@@ -133,18 +134,22 @@ export const PostListWrapper = styled.main`
   width: 100%;
   flex-direction: column;
   height: fit-content;
+  padding: 16px 0;
   row-gap: 32px;
 
   ${tablet`{
+    padding: 12px 0;
     row-gap: 24px;
   }`}
 
   ${mobile`{
+    padding: 8px 0;
     row-gap: 16px;
   }`}
 
   ${xMobile`{
     width: 300px;
+    padding: 16px 0;
     row-gap: 32px;
   }
   `}
