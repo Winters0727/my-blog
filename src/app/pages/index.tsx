@@ -7,6 +7,7 @@ import PostList from "@/app/components/index/PostList";
 import CategoryList from "@/app/components/index/CategoryList";
 import MobileCategoryList from "@/app/components/index/MobileCategoryList";
 import ProfileComponent from "@/app/components/index/ProfileComponent";
+import LawnComponent from "@/app/components/index/LawnComponent";
 import ClockComponent from "@/app/components/index/ClockComponent";
 import VisitComponent from "@/app/components/index/VisitComponent";
 
@@ -89,6 +90,7 @@ const MainPage: NextPage = () => {
         <RightSectionWrapper>
           <ProfileComponent />
           <ClockComponent />
+          <LawnComponent state={state} dispatch={dispatch} />
           <VisitComponent />
         </RightSectionWrapper>
       </RightSection>

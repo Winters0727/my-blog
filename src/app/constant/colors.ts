@@ -41,6 +41,7 @@ const COLORS = {
   inverse: "#292b2c",
   faded: "#f7f7f7",
   gray: "#aaaaaa",
+  lightGray: "#eeeeee",
   strong: "#888888",
 };
 
