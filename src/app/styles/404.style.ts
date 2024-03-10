@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-import { tablet, mobile } from "../utils/style.utils";
+import { tablet, mobile, xMobile } from "../utils/style.utils";
 
 export const NotFoundWrapper = styled.article`
   display: flex;
@@ -23,6 +23,11 @@ export const NotFoundWrapper = styled.article`
   ${mobile`{
     margin-top: 32px;
     font-size: 2.5rem;
+  }`}
+
+  ${xMobile`{
+    margin-top: 24px;
+    font-size: 1.5rem;
   }`}
 `;
 
@@ -46,6 +51,11 @@ export const NotFoundCanvas = styled.canvas`
   ${mobile`{
     width: 300px;
     height: 300px;
+  }`}
+
+  ${xMobile`{
+    width: 200px;
+    height: 200px;
   }`}
 `;
 
