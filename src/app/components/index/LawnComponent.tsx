@@ -54,6 +54,16 @@ const LawnComponent: FC<LawnProps> = ({ state, dispatch }) => {
     return [dateArray, postCount];
   }, []);
 
+  const handleClickGrass = (date: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    dispatch({
+      type: "SELECT_DATE",
+      payload: { date },
+    });
+  };
+
   return (
     <LawnWrapper className={theme?.mode}>
       {keyArray.map((dateArr) => (
@@ -64,6 +74,7 @@ const LawnComponent: FC<LawnProps> = ({ state, dispatch }) => {
               theme={theme.mode}
               date={date}
               count={countByDate[date]}
+              onClick={handleClickGrass(date)}
             />
           ))}
         </LawnRow>

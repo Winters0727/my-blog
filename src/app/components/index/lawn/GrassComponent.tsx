@@ -19,9 +19,10 @@ interface GrassProps {
   theme: ThemeMode;
   date: string;
   count: number;
+  onClick: (e: React.MouseEvent) => void;
 }
 
-const GrassComponent: FC<GrassProps> = ({ theme, date, count }) => {
+const GrassComponent: FC<GrassProps> = ({ theme, date, count, onClick }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const getGrassColor = (theme: ThemeMode, count: number) => {
@@ -58,6 +59,7 @@ const GrassComponent: FC<GrassProps> = ({ theme, date, count }) => {
         }}
         onMouseEnter={handleMouseEnter}
         onMouseOut={handleMouseOut}
+        onClick={onClick}
       />
     </GrassWrapper>
   );

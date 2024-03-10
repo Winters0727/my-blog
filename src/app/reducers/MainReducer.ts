@@ -1,10 +1,16 @@
 "use client";
 
+import dayjs from "dayjs";
+
 import { POST_COUNT } from "@/app/constant/post";
 
 import type { Post } from "contentlayer/generated";
 
-type MainActionType = "SELECT_CATEGORY" | "SELECT_SUBCATEGORY" | "ADD_POSTS";
+type MainActionType =
+  | "SELECT_CATEGORY"
+  | "SELECT_SUBCATEGORY"
+  | "SELECT_DATE"
+  | "ADD_POSTS";
 
 export interface MainState {
   category: string;
@@ -20,6 +26,7 @@ export interface MainAction {
     posts?: Post[];
     category?: string;
     subCategory?: string;
+    date?: string;
     isMobile?: boolean;
   };
 }
@@ -60,6 +67,24 @@ export const MainReducer = (state: MainState, action: MainAction) => {
               post.subCategory === subCategory
           );
           state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
+        }
+      }
+      break;
+
+    case "SELECT_DATE":
+      if (action.payload) {
+        const { date } = action.payload;
+
+        if (date) {
+          state.categorizedPosts = state.totalPosts.filter(
+            (post) => dayjs(post.createdAt).format("YYYY-MM-DD") === date
+          );
+
+          if (state.categorizedPosts.length > 0) {
+            state.category = "";
+            state.subCategory = "";
+            state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
+          }
         }
       }
       break;
