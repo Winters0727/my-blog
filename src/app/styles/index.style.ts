@@ -31,8 +31,7 @@ export const MainWrapper = styled.section`
   display: flex;
   width: 100%;
   max-width: 1280px;
-  height: 100%;
-  min-height: max-content;
+  min-height: 100vh;
   justify-content: space-around;
   margin-top: 64px;
   margin-bottom: auto;
