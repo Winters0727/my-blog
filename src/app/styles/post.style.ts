@@ -296,6 +296,7 @@ export const PostTitleText = styled.div`
 
   ${mobile`{
     font-size: 2rem;
+    line-height: 36px;
   }`}
 `;
 

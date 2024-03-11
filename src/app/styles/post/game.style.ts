@@ -2,6 +2,8 @@
 
 import styled, { keyframes } from "styled-components";
 
+import { tablet, mobile, xMobile } from "@/app/utils/style.utils";
+
 import COLORS from "@/app//constant/colors";
 
 const showImageAnimation = keyframes`
@@ -35,8 +37,18 @@ export const GameDataWrapper = styled.section`
   align-items: center;
   margin: 32px auto;
   max-width: 960px;
-  border: 5px solid;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 8px;
+
+  ${tablet`{
+    border-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-width: 3px;
+  }`}
+
 
   &.light {
     border-color: ${COLORS.black};
@@ -96,17 +108,43 @@ export const GameTopWrapper = styled.div`
   text-align: center;
   border-bottom-width: 5px;
   border-bottom-style: solid;
+
+  ${tablet`{
+    border-bottom-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-bottom-width: 3px;
+  }`}
 `;
 
 export const TopSubWrapper = styled.div`
   display: flex;
   border-top-width: 5px;
   border-top-style: solid;
+
+  ${tablet`{
+    border-top-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-top-width: 3px;
+  }`}
 `;
 
 export const GameTitle = styled.span`
   padding: 32px 0;
   font-size: 2rem;
+
+  ${tablet`{
+    padding: 28px 0;
+    font-size: 1.8rem;
+  }`}
+
+  ${mobile`{
+    padding: 24px 0;
+    font-size: 1.5rem;
+  }`}
 `;
 
 export const CoverImageContainer = styled.div`
@@ -118,8 +156,8 @@ export const CoverImageContainer = styled.div`
 `;
 
 export const CoverImage = styled.img`
-  width: auto;
-  height: 30vh;
+  width: 40vw;
+  height: auto
   cursor: pointer;
 `;
 
@@ -134,6 +172,14 @@ export const ReleaseText = styled.span`
   width: 50%;
   font-size: 1.5rem;
   text-align: center;
+
+  ${tablet`{
+    font-size: 1.4rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.9rem;
+  }`}
 `;
 
 export const ReleaseDateWrapper = styled.div`
@@ -144,19 +190,42 @@ export const ReleaseDateWrapper = styled.div`
   align-items: center;
   border-left-width: 5px;
   border-left-style: solid;
+
+  ${tablet`{
+    border-left-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-left-width: 3px;
+  }`}
 `;
 
 export const ReleaseDate = styled.span`
   font-size: 1.4rem;
   text-align: center;
+
+  ${tablet`{
+    font-size: 1.2rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.6rem;
+  }`}
 `;
 
 export const GameImageText = styled.span`
   width: 30%;
-  min-width: 200px;
   font-size: 1.5rem;
   text-align: center;
-  word-break: word-break;
+  word-break: break-word;
+
+  ${tablet`{
+    font-size: 1.4rem;
+  }`}
+
+  ${mobile`{
+    font-size: 1rem;
+  }`}
 `;
 
 export const GameMiddleWrapper = styled.div`
@@ -178,6 +247,14 @@ export const GameBottomWrapper = styled.div`
   & > div:not(:last-child) {
     border-bottom-width: 5px;
     border-bottom-style: solid;
+
+    ${tablet`{
+      border-bottom-width: 4px;
+    }`}
+
+    ${mobile`{
+      border-bottom-width: 3px;
+    }`}
   }
 `;
 
@@ -192,6 +269,18 @@ export const GameImageContainer = styled.div`
   padding: 16px;
   border-left-width: 5px;
   border-left-style: solid;
+
+  ${tablet`{
+    padding: 12px;
+    gap: 12px;
+    border-left-width: 4px;
+  }`}
+
+  ${mobile`{
+    padding: 8px;
+    gap: 8px;
+    border-left-width: 3px;
+  }`}
 `;
 
 export const GameImageThumb = styled.img`
@@ -199,6 +288,16 @@ export const GameImageThumb = styled.img`
   height: 90px;
   border-radius: 4px;
   cursor: pointer;
+
+  ${tablet`{
+    width: 70px;
+    height: 70px;
+  }`}
+
+  ${mobile`{
+    width: 40px;
+    height: 40px;
+  }`}
 `;
 
 export const SubDataWrapper = styled.div`
@@ -208,9 +307,25 @@ export const SubDataWrapper = styled.div`
   border-left-width: 5px;
   border-left-style: solid;
 
+  ${tablet`{
+    border-left-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-left-width: 3px;
+  }`}
+
   & > div:not(:last-child) {
     border-bottom-width: 5px;
     border-bottom-style: solid;
+
+    ${tablet`{
+      border-bottom-width: 4px;
+    }`}
+
+    ${mobile`{
+      border-bottom-width: 3px;
+    }`}
   }
 `;
 
@@ -225,6 +340,14 @@ export const RatingText = styled.span`
   width: 50%;
   font-size: 1.5rem;
   text-align: center;
+
+  ${tablet`{
+    font-size: 1.4rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.8rem;
+  }`}
 `;
 
 export const RatingTagWrapper = styled.div`
@@ -235,6 +358,14 @@ export const RatingTagWrapper = styled.div`
   height: 100%;
   border-left-width: 5px;
   border-left-style: solid;
+
+  ${tablet`{
+    border-left-width: 4px;
+  }`}
+
+  ${mobile`{
+    border-left-width: 3px;
+  }`}
 `;
 
 export const RatingTag = styled.span`
@@ -243,6 +374,20 @@ export const RatingTag = styled.span`
   background-color: ${COLORS.success};
   color: ${COLORS.white};
   font-size: 1.4rem;
+
+  ${tablet`{
+    font-size: 1.3rem;
+  }`}
+
+  ${mobile`{
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }`}
+
+  ${xMobile`{
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }`}
 
   &.bad {
     background-color: ${COLORS.danger};

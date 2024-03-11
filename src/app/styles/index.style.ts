@@ -32,6 +32,7 @@ export const MainWrapper = styled.section`
   width: 100%;
   max-width: 1280px;
   height: 100%;
+  min-height: max-content;
   justify-content: space-around;
   margin-top: 64px;
   margin-bottom: auto;
