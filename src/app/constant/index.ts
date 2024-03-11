@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 export const METADATA_BASE_URL = new URL("https://blog.winters0727.kr");
 
 export const SITE_TITLE = "Winters의 블로그에 어서오세요 :)";
@@ -35,4 +37,20 @@ export const PROFILE_NAME = "🕶️ Winters";
 export const PROFILE_DESCRIPTION =
   "블로그에 오신걸 환영합니다!\n준비한건 많이 없지만\n편하게 구경하다 가세요. :)";
 
+export const NOTFOUND_TITLE = "페이지를 찾지 못했습니다. :(";
+
 export const NOTFOUND_MAX_COUNT = 3;
+
+export const METADATA: Metadata = {
+  metadataBase: METADATA_BASE_URL,
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  icons: {
+    icon: "/images/favicon.ico",
+  },
+  openGraph: OPEN_GRAPH,
+  other: {
+    "naver-site-verification":
+      process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION || "",
+  },
+};

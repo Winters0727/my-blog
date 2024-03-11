@@ -7,9 +7,11 @@ import PostContent from "@/app/components/post/PostContext";
 import GameContent from "@/app/components/post/GameContent";
 import SeriesList from "@/app/components/post/SeriesList";
 
+import { METADATA } from "@/app/constant";
+
 import { PostWrapper } from "@/app/styles/post.style";
 
-import type { FC } from "react";
+import type { NextPage, Metadata } from "next";
 
 interface PageProps {
   params: {
@@ -24,10 +26,14 @@ posts.sort(
     new Date(prev.createdAt).getTime() - new Date(next.createdAt).getTime()
 );
 
+export const metadata: Metadata = {
+  ...METADATA,
+};
+
 export const generateStaticParams = async () =>
   posts.map((post) => ({ slug: post._raw.flattenedPath }));
 
-const Page: FC<PageProps> = (props) => {
+const Page: NextPage<PageProps> = (props) => {
   const post = posts.find(
     (post) =>
       encodeURIComponent(post._raw.sourceFileName.replace(".mdx", "")) ===
@@ -35,6 +41,10 @@ const Page: FC<PageProps> = (props) => {
   );
 
   if (!post || !post.published) notFound();
+
+  metadata.title = post.title;
+
+  if (metadata.openGraph) metadata.openGraph.title = post.title;
 
   const MDXComponent = useMDXComponent(post?.body.code || "");
 

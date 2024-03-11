@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import CanvasApp from "@/app/canvas/app";
 
-import { NOTFOUND_MAX_COUNT } from "@/app/constant";
+import { METADATA, NOTFOUND_TITLE, NOTFOUND_MAX_COUNT } from "@/app/constant";
 
 import {
   NotFoundWrapper,
@@ -14,6 +14,17 @@ import {
   NotFoundCanvas,
   NotFoundImage,
 } from "@/app/styles/404.style";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  ...METADATA,
+  title: NOTFOUND_TITLE,
+  openGraph: {
+    ...METADATA.openGraph,
+    title: NOTFOUND_TITLE,
+  },
+};
 
 const NotFound = () => {
   const [countdown, setCountdown] = useState(NOTFOUND_MAX_COUNT);
