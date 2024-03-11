@@ -30,17 +30,15 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const ProfileImage = styled.img`
-  width: 300px;
+  width: 100%;
   height: auto;
   max-height: 300px;
 
   ${tablet`{
-    width: 200px;
     max-height: 200px;
   }`}
 
   ${mobile`{
-    width: 100px;
     max-height: 100px;
   }`}
 `;
