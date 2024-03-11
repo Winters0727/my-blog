@@ -180,6 +180,10 @@ export const ReleaseText = styled.span`
   ${mobile`{
     font-size: 0.9rem;
   }`}
+
+  ${xMobile`{
+    font-size: 0.8rem;
+  }`}
 `;
 
 export const ReleaseDateWrapper = styled.div`
@@ -210,6 +214,10 @@ export const ReleaseDate = styled.span`
 
   ${mobile`{
     font-size: 0.6rem;
+  }`}
+
+  ${xMobile`{
+    font-size: 0.5rem;
   }`}
 `;
 
@@ -347,6 +355,10 @@ export const RatingText = styled.span`
 
   ${mobile`{
     font-size: 0.8rem;
+  }`}
+
+  ${xMobile`{
+    font-size: 0.7rem;
   }`}
 `;
 
