@@ -2,7 +2,7 @@
 
 import styled, { keyframes } from "styled-components";
 
-import { tablet, mobile, xMobile } from "@/app/utils/style.utils";
+import { tablet, mobile, xMobile, sMobile } from "@/app/utils/style.utils";
 
 import COLORS from "@/app//constant/colors";
 
@@ -145,6 +145,11 @@ export const GameTitle = styled.span`
     padding: 24px 0;
     font-size: 1.5rem;
   }`}
+
+  ${xMobile`{
+    padding: 16px 0;
+    font-size: 1.3rem;
+  }`}
 `;
 
 export const CoverImageContainer = styled.div`
@@ -183,6 +188,10 @@ export const ReleaseText = styled.span`
 
   ${xMobile`{
     font-size: 0.8rem;
+  }`}
+
+  ${sMobile`{
+    font-size: 0.7rem;
   }`}
 `;
 
@@ -233,6 +242,10 @@ export const GameImageText = styled.span`
 
   ${mobile`{
     font-size: 1rem;
+  }`}
+
+  ${xMobile`{
+    font-size: 0.8rem;
   }`}
 `;
 
@@ -306,6 +319,11 @@ export const GameImageThumb = styled.img`
     width: 40px;
     height: 40px;
   }`}
+
+  ${xMobile`{
+    width: 30px;
+    height: 30px;
+  }`}
 `;
 
 export const SubDataWrapper = styled.div`
@@ -360,6 +378,10 @@ export const RatingText = styled.span`
   ${xMobile`{
     font-size: 0.7rem;
   }`}
+
+  ${sMobile`{
+    font-size: 0.6rem;
+  }`}
 `;
 
 export const RatingTagWrapper = styled.div`
@@ -399,6 +421,11 @@ export const RatingTag = styled.span`
   ${xMobile`{
     padding: 6px 12px;
     font-size: 0.8rem;
+  }`}
+
+  ${sMobile`{
+    padding: 4px 10px;
+    font-size: 0.7rem;
   }`}
 
   &.bad {
