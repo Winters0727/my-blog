@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, memo } from "react";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 
@@ -42,7 +42,10 @@ const SearchBar: FC<SearchBarProps> = ({ dispatch }) => {
     <SearchBarWrapper onSubmit={onSubmit}>
       <SearchBarInput
         ref={inputRef}
+        type="text"
         name="keyword"
+        placeholder="검색어를 입력"
+        maxLength={20}
         autoCorrect="false"
         autoComplete="false"
       />
@@ -53,4 +56,4 @@ const SearchBar: FC<SearchBarProps> = ({ dispatch }) => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);
