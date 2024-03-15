@@ -339,3 +339,54 @@ export const PostTitleDataContainer = styled.div`
     font-size: 1rem;
   }`}
 `;
+
+export const PostRecommendWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  margin: 32px auto;
+  padding: 16px;
+  align-items: center;
+  row-gap: 16px;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &.light {
+    background-color: ${COLORS.lightGray};
+  }
+
+  &.dark {
+    background-color: ${COLORS.darkGray};
+  }
+`;
+
+export const PostRecommendImage = styled.img`
+  width: 80px;
+  height: 80px;
+
+  ${mobile`{
+    width: 60px;
+    height: 60px;
+  }`}
+
+  ${xMobile`{
+    width: 50px;
+    height: 50px;
+  }`}
+`;
+
+export const PostRecommendCount = styled.span`
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  ${mobile`{
+    font-size: 1rem;
+  }`}
+
+  ${mobile`{
+    font-size: 0.9rem;
+  }`}
+`;

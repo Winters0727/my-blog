@@ -17,3 +17,13 @@ export const getPostData = async (slug: string) => {
 
   return data;
 };
+
+export const updatePostLikes = async (slug: string) => {
+  const data = (
+    await https.put<FetchResponse<Pick<PostData, "likes" | "isLike">>>(
+      `/blog/post/${slug}/likes`
+    )
+  ).data;
+
+  return data;
+};

@@ -42,7 +42,7 @@ const COLORS = {
   faded: "#f7f7f7",
   gray: "#aaaaaa",
   lightGray: "#eeeeee",
-  strong: "#888888",
+  darkGray: "#888888",
 };
 
 export default COLORS;

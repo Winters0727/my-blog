@@ -14,6 +14,10 @@ const postComputedFields = {
     type: "string",
     resolve: (doc) => `/${doc._raw.flattenedPath}`,
   },
+  slug: {
+    type: "string",
+    resolve: (doc) => doc._raw.flattenedPath.replace("posts/", ""),
+  },
 };
 
 const GameDataNestedType = defineNestedType(() => ({

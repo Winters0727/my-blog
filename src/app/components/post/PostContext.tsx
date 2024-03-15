@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 
 import PostTitle from "@/app/components/post/PostTitle";
+import RecommendComponent from "@/app/components/post/RecommendComponent";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 
-import { getPostData } from "@/app/services/post.service";
+import { getPostData, updatePostLikes } from "@/app/services/post.service";
 
 import { PostContentWrapper } from "@/app/styles/post.style";
 
@@ -29,6 +30,17 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
 
   const theme = useThemeContext();
 
+  const handleClickRecommend = async (e: React.MouseEvent) => {
+    const { data } = await updatePostLikes(post.slug);
+
+    if (data)
+      setPostData((prevData) => ({
+        ...prevData,
+        likes: data.likes,
+        isLike: data?.isLike,
+      }));
+  };
+
   useEffect(() => {
     const fetchPostData = async () => {
       const res = await getPostData(post.slug);
@@ -48,6 +60,11 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
         createdAt={post.createdAt}
       />
       {children}
+      <RecommendComponent
+        likes={postData.likes}
+        isLike={postData.isLike}
+        onClick={handleClickRecommend}
+      />
     </PostContentWrapper>
   );
 };
