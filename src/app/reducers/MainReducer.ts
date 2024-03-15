@@ -10,14 +10,17 @@ type MainActionType =
   | "SELECT_CATEGORY"
   | "SELECT_SUBCATEGORY"
   | "SELECT_DATE"
+  | "SEARCH_BY_KEYWORD"
   | "ADD_POSTS";
 
 export interface MainState {
   category: string;
   subCategory: string;
+  searchKeyword: string;
   totalPosts: Post[];
   currentPosts: Post[];
   categorizedPosts: Post[];
+  categorizedPostsBackup: Post[];
 }
 
 export interface MainAction {
@@ -27,7 +30,8 @@ export interface MainAction {
     category?: string;
     subCategory?: string;
     date?: string;
-    isMobile?: boolean;
+    keyword?: string;
+    initSubCategory?: boolean;
   };
 }
 
@@ -35,21 +39,21 @@ export const MainReducer = (state: MainState, action: MainAction) => {
   switch (action.type) {
     case "SELECT_CATEGORY":
       if (action.payload) {
-        const { category, isMobile } = action.payload;
+        const { category, initSubCategory } = action.payload;
 
         if (category) {
           state.category = category;
-
-          if (isMobile) {
-            state.categorizedPosts = state.totalPosts.filter(
-              (post) => post.category === category
-            );
-            state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
-          }
+          if (initSubCategory) state.subCategory = "";
+          state.categorizedPosts = state.totalPosts.filter(
+            (post) => post.category === category
+          );
+          state.categorizedPostsBackup = [...state.categorizedPosts];
+          state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
         } else {
           state.category = "";
           state.subCategory = "";
           state.categorizedPosts = [...state.totalPosts];
+          state.categorizedPostsBackup = [...state.categorizedPosts];
           state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
         }
       }
@@ -66,6 +70,14 @@ export const MainReducer = (state: MainState, action: MainAction) => {
               post.category === state.category &&
               post.subCategory === subCategory
           );
+          state.categorizedPostsBackup = [...state.categorizedPosts];
+          state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
+        } else {
+          state.subCategory = "";
+          state.categorizedPosts = state.totalPosts.filter(
+            (post) => post.category === state.category
+          );
+          state.categorizedPostsBackup = [...state.categorizedPosts];
           state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
         }
       }
@@ -85,6 +97,25 @@ export const MainReducer = (state: MainState, action: MainAction) => {
             state.subCategory = "";
             state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
           }
+        }
+      }
+      break;
+
+    case "SEARCH_BY_KEYWORD":
+      if (action.payload) {
+        const { keyword } = action.payload;
+
+        if (keyword) {
+          state.searchKeyword = keyword;
+
+          const keywordRegex = new RegExp(keyword, "i");
+
+          state.categorizedPosts = state.categorizedPostsBackup.filter(
+            (post) =>
+              keywordRegex.test(post.title) ||
+              keywordRegex.test(post.description)
+          );
+          state.currentPosts = state.categorizedPosts.slice(0, POST_COUNT);
         }
       }
       break;

@@ -52,6 +52,11 @@ const CategoryComponent: FC<CategoryProps> = ({
         type: "SELECT_CATEGORY",
         payload: { category },
       });
+    } else {
+      dispatch({
+        type: "SELECT_CATEGORY",
+        payload: { category, initSubCategory: true },
+      });
     }
   };
 

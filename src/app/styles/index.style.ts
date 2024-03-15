@@ -76,7 +76,8 @@ export const TopSection = styled(StyledSection)`
 `;
 
 export const LeftSection = styled(StyledSection)`
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   min-width: 140px;
 
   ${tablet`{

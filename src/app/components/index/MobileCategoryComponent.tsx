@@ -37,7 +37,7 @@ const MobileCategoryComponent: FC<MobileCategoryProps> = ({
     if (state.category !== category) {
       dispatch({
         type: "SELECT_CATEGORY",
-        payload: { category, isMobile: true },
+        payload: { category },
       });
     }
   };

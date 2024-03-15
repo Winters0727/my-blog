@@ -10,6 +10,7 @@ import ProfileComponent from "@/app/components/index/ProfileComponent";
 import LawnComponent from "@/app/components/index/LawnComponent";
 import ClockComponent from "@/app/components/index/ClockComponent";
 import VisitComponent from "@/app/components/index/VisitComponent";
+import SearchBar from "@/app/components/index/SearchBar";
 
 import { MainReducer } from "@/app/reducers/MainReducer";
 
@@ -62,9 +63,11 @@ const PostsPage: NextPage = () => {
   const [state, dispatch] = useReducer(MainReducer, {
     category: "",
     subCategory: "",
+    searchKeyword: "",
     currentPosts: posts.slice(0, POST_COUNT),
     totalPosts: posts,
     categorizedPosts: [...posts],
+    categorizedPostsBackup: [...posts],
   });
 
   return (
@@ -82,6 +85,7 @@ const PostsPage: NextPage = () => {
           dispatch={dispatch}
           categories={categories}
         />
+        <SearchBar dispatch={dispatch} />
       </LeftSection>
       <MiddleSection>
         <PostList state={state} dispatch={dispatch} />
