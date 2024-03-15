@@ -71,3 +71,10 @@ export interface Series {
   title: string;
   path: string;
 }
+
+export interface PostData {
+  slug: string;
+  views: number;
+  likes: number;
+  isLike: boolean;
+}

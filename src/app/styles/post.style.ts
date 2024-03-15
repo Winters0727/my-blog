@@ -293,6 +293,7 @@ export const PostTitleText = styled.div`
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
+  line-height: 56px;
 
   ${mobile`{
     font-size: 2rem;
@@ -329,9 +330,10 @@ export const PostTag = styled.span`
   }
 `;
 
-export const PostTitleDate = styled.div`
+export const PostTitleDataContainer = styled.div`
   font-size: 1.2rem;
   margin-left: auto;
+  text-align: right;
 
   ${mobile`{
     font-size: 1rem;

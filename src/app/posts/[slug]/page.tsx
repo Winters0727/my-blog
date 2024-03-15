@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts } from "contentlayer/generated";
 
-import PostTitle from "@/app/components/post/PostTitle";
 import PostContent from "@/app/components/post/PostContext";
 import GameContent from "@/app/components/post/GameContent";
 import SeriesList from "@/app/components/post/SeriesList";
@@ -50,12 +49,7 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <PostWrapper>
-      <PostTitle
-        title={post.title}
-        tags={post.tags}
-        createdAt={post.createdAt}
-      />
-      <PostContent>
+      <PostContent post={post}>
         {post.series && (
           <SeriesList
             title={post.series}

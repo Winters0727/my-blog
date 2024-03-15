@@ -1,4 +1,5 @@
 "use client";
+
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
@@ -9,7 +10,7 @@ import {
   PostTitleText,
   PostTagContainer,
   PostTag,
-  PostTitleDate,
+  PostTitleDataContainer,
 } from "@/app/styles/post.style";
 
 import type { FC } from "react";
@@ -17,10 +18,11 @@ import type { FC } from "react";
 interface PostTitleProps {
   title: string;
   tags: string[];
+  views: number;
   createdAt: string;
 }
 
-const PostTitle: FC<PostTitleProps> = ({ title, tags, createdAt }) => {
+const PostTitle: FC<PostTitleProps> = ({ title, tags, views, createdAt }) => {
   const theme = useThemeContext();
 
   dayjs.locale("ko");
@@ -35,9 +37,11 @@ const PostTitle: FC<PostTitleProps> = ({ title, tags, createdAt }) => {
           </PostTag>
         ))}
       </PostTagContainer>
-      <PostTitleDate>
+      <PostTitleDataContainer>
         {dayjs(createdAt).format("YYYY년 MM월 DD일 ddd요일")}
-      </PostTitleDate>
+        <br />
+        조회수: {views}회
+      </PostTitleDataContainer>
     </PostTitleWrapper>
   );
 };
