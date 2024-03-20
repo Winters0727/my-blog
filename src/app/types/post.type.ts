@@ -78,3 +78,35 @@ export interface PostData {
   likes: number;
   isLike: boolean;
 }
+
+interface BaseComment {
+  _id: string;
+  name: string;
+  type: "text" | "image";
+  content: string;
+  ip: string;
+  isDeleted: boolean;
+  isSubComment: boolean;
+  createdAt: string;
+  updatedAt: string;
+  deletedBy?: "Host" | "User";
+  deletedAt?: Date;
+}
+
+export interface Comment extends BaseComment {
+  subComments?: BaseComment[];
+}
+
+export interface CommentPayload {
+  parentId?: string;
+  name: string;
+  type: "text" | "image";
+  content: string;
+  password: string;
+}
+
+export interface CommentIcon {
+  name: string;
+  fileName: string;
+  path: string;
+}

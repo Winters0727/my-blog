@@ -51,17 +51,19 @@ const PostList: FC<PostListProps> = ({ state, dispatch }) => {
   }, [handleIOIntersect]);
 
   return (
-    <PostListWrapper ref={postWrapperRef}>
-      {state.currentPosts.map((post, index) => {
-        const { title, path } = post;
+    state.currentPosts.length > 0 && (
+      <PostListWrapper ref={postWrapperRef}>
+        {state.currentPosts.map((post, index) => {
+          const { title, path } = post;
 
-        return (
-          <Link key={`${index}-${title}`} href={path}>
-            <PostComponent post={post} />
-          </Link>
-        );
-      })}
-    </PostListWrapper>
+          return (
+            <Link key={`${index}-${title}`} href={path}>
+              <PostComponent post={post} />
+            </Link>
+          );
+        })}
+      </PostListWrapper>
+    )
   );
 };
 

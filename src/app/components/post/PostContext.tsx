@@ -4,16 +4,21 @@ import { useState, useEffect } from "react";
 
 import PostTitle from "@/app/components/post/PostTitle";
 import RecommendComponent from "@/app/components/post/RecommendComponent";
+import CommentList from "@/app/components/post/CommentList";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 
-import { getPostData, updatePostLikes } from "@/app/services/post.service";
+import {
+  getPostData,
+  getCommentData,
+  updatePostLikes,
+} from "@/app/services/post.service";
 
 import { PostContentWrapper } from "@/app/styles/post.style";
 
 import type { FC } from "react";
 import type { Post } from "contentlayer/generated";
-import type { PostData } from "@/app/types/post.type";
+import type { Comment, PostData } from "@/app/types/post.type";
 
 interface PostContentProps {
   post: Post;
@@ -27,6 +32,8 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
     likes: 0,
     isLike: false,
   });
+
+  const [comments, setComments] = useState<Comment[]>([]);
 
   const theme = useThemeContext();
 
@@ -42,13 +49,15 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
   };
 
   useEffect(() => {
-    const fetchPostData = async () => {
-      const res = await getPostData(post.slug);
+    const fetchData = async () => {
+      const postRes = await getPostData(post.slug);
+      const commentRes = await getCommentData(post.slug);
 
-      if (res.data) setPostData(res.data);
+      if (postRes.data) setPostData(postRes.data);
+      if (commentRes.data) setComments(commentRes.data);
     };
 
-    fetchPostData();
+    fetchData();
   }, []);
 
   return (
@@ -65,6 +74,7 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
         isLike={postData.isLike}
         onClick={handleClickRecommend}
       />
+      <CommentList comments={comments} />
     </PostContentWrapper>
   );
 };
