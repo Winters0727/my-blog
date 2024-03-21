@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts } from "contentlayer/generated";
 
-import PostContent from "@/app/components/post/PostContext";
+import PostContent from "@/app/components/post/PostContent";
 import GameContent from "@/app/components/post/GameContent";
 import SeriesList from "@/app/components/post/SeriesList";
 

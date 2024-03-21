@@ -7,7 +7,10 @@ import "dayjs/locale/ko";
 
 import { useThemeContext } from "@/app/context/ThemeContext";
 
-import { DEFAULT_COMMENT_PROFILE_IMAGE } from "@/app/constant/post";
+import {
+  DEFAULT_COMMENT_PROFILE_IMAGE,
+  IMAGE_ENDPOINT,
+} from "@/app/constant/post";
 
 import {
   CommentContainer,
@@ -16,7 +19,6 @@ import {
   CommentName,
   CommentIp,
   CommentDate,
-  CommentPassword,
   CommentContent,
   CommentText,
   CommentIcon,
@@ -29,9 +31,14 @@ interface CommentProps {
   comment: Comment;
   parentId?: string;
   isSubComment?: boolean;
+  onClick: (e: React.MouseEvent) => void;
 }
 
-const CommentComponent: FC<CommentProps> = ({ comment, isSubComment }) => {
+const CommentComponent: FC<CommentProps> = ({
+  comment,
+  isSubComment,
+  onClick,
+}) => {
   const DELETED_BY = {
     User: "유저",
     Host: "호스트",
@@ -76,6 +83,7 @@ const CommentComponent: FC<CommentProps> = ({ comment, isSubComment }) => {
       className={
         isSubComment ? [theme?.mode, "subComment"].join(" ") : theme?.mode
       }
+      onClick={onClick}
     >
       <CommentInfo>
         <CommentProfileImage
@@ -95,7 +103,7 @@ const CommentComponent: FC<CommentProps> = ({ comment, isSubComment }) => {
           </CommentText>
         ) : (
           <CommentIcon
-            src={`${process.env.NEXT_PUBLIC_API_ENDPOINT}/images/icons/${content}`}
+            src={`${IMAGE_ENDPOINT}/icons/${content}`}
             alt={content}
           />
         )}

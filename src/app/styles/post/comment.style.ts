@@ -26,7 +26,7 @@ export const CommentListWrapper = styled.section`
   &.light {
     background-color: ${COLORS.primary};
 
-    & button {
+    & button:not(.icon) {
       background-color: ${COLORS.success};
     }
   }
@@ -34,7 +34,7 @@ export const CommentListWrapper = styled.section`
   &.dark {
     background-color: ${COLORS.danger};
 
-    & button {
+    & button:not(.icon) {
       background-color: ${COLORS.info};
     }
   }
@@ -47,6 +47,7 @@ export const CommentContainer = styled.div`
   border-width: 3px;
   border-style: solid;
   border-radius: 8px;
+  cursor: pointer;
 
   &.subComment {
     margin-left: 5%;
@@ -106,6 +107,7 @@ export const CommentIcon = styled.img`
   height: 150px;
   margin: auto 0;
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 export const CommentPassword = styled.input`
@@ -114,13 +116,17 @@ export const CommentPassword = styled.input`
 
 export const CommentFormWrapper = styled.form`
   display: flex;
-  height: 200px;
+  min-height: 200px;
   padding: 16px;
   column-gap: 16px;
   color: ${COLORS.white};
   border-width: 3px;
   border-style: solid;
   border-radius: 8px;
+
+  &.subComment {
+    margin-left: 5%;
+  }
 `;
 
 export const CommentFormUserWrapper = styled.div`
@@ -163,13 +169,25 @@ export const CommentFormText = styled.textarea`
   border-radius: 4px;
 `;
 export const CommentFormIconContainer = styled.div`
+  display: flex;
+  align-items: center;
   padding: 8px;
+  column-gap: 8px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: ${COLORS.white};
+  overflow-y: auto;
 `;
 
 export const CommentFormIcon = styled.img`
   width: 75px;
   height: 75px;
   border-radius: 4px;
+  cursor: pointer;
+`;
+
+export const CommentFormIconButton = styled.button`
+  background-color: transparent;
 `;
 
 export const CommentFormSwitchButtonContainer = styled.div`

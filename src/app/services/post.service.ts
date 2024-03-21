@@ -6,7 +6,11 @@ import type {
   Comment,
   CommentIcon,
   GameData,
+  CommentPayload,
 } from "@/app/types/post.type";
+
+export const postComment = async (slug: string, payload: CommentPayload) =>
+  await https.post(`/blog/post/${slug}/comment`, payload);
 
 export const getGameData = async (gameId: number) => {
   const data = (

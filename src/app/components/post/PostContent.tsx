@@ -37,6 +37,16 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
 
   const theme = useThemeContext();
 
+  const fetchPostData = async () => {
+    const postRes = await getPostData(post.slug);
+    if (postRes.data) setPostData(postRes.data);
+  };
+
+  const fetchCommentData = async () => {
+    const commentRes = await getCommentData(post.slug);
+    if (commentRes.data) setComments(commentRes.data);
+  };
+
   const handleClickRecommend = async (e: React.MouseEvent) => {
     const { data } = await updatePostLikes(post.slug);
 
@@ -50,11 +60,8 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const postRes = await getPostData(post.slug);
-      const commentRes = await getCommentData(post.slug);
-
-      if (postRes.data) setPostData(postRes.data);
-      if (commentRes.data) setComments(commentRes.data);
+      await fetchPostData();
+      await fetchCommentData();
     };
 
     fetchData();
@@ -74,7 +81,11 @@ const PostContent: FC<PostContentProps> = ({ post, children }) => {
         isLike={postData.isLike}
         onClick={handleClickRecommend}
       />
-      <CommentList comments={comments} />
+      <CommentList
+        comments={comments}
+        slug={post.slug}
+        fetchComments={fetchCommentData}
+      />
     </PostContentWrapper>
   );
 };
