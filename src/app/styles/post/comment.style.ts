@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-import { tablet, mobile, xMobile, sMobile } from "@/app/utils/style.utils";
+import { tablet, xMobile, sMobile } from "@/app/utils/style.utils";
 
 import COLORS from "@/app//constant/colors";
 
@@ -14,6 +14,10 @@ export const CommentListWrapper = styled.section`
   row-gap: 16px;
   border-radius: 8px;
   background-color: ${COLORS.darkGray};
+
+  ${xMobile`{
+    padding: 16px;
+  }`}
 
   & * {
     border-color: transparent;
@@ -49,6 +53,10 @@ export const CommentContainer = styled.div`
   border-radius: 8px;
   cursor: pointer;
 
+  ${xMobile`{
+    padding: 12px 8px;
+  }`}
+
   &.subComment {
     margin-left: 5%;
   }
@@ -69,6 +77,15 @@ export const CommentInfo = styled.div`
   width: 15%;
   min-width: 130px;
   line-height: 24px;
+
+  ${xMobile`{
+    align-items: flex-start;
+    min-width: 85px;
+  }`}
+
+  ${sMobile`{
+    min-width: 60px;
+  }`}
 `;
 
 export const CommentProfileImage = styled.img`
@@ -77,18 +94,34 @@ export const CommentProfileImage = styled.img`
   margin: auto;
   padding: 8px;
   border-radius: 4px;
+
+  ${xMobile`{
+    display: none;
+  }`}
 `;
 
 export const CommentName = styled.span`
   font-size: 0.9rem;
+
+  ${xMobile`{
+    font-size: 0.8rem;
+  }`}
 `;
 
 export const CommentIp = styled.span`
   font-size: 0.8rem;
+
+  ${xMobile`{
+    font-size: 0.7rem;
+  }`}
 `;
 
 export const CommentDate = styled.span`
   font-size: 0.7rem;
+
+  ${xMobile`{
+    font-size: 0.6rem;
+  }`}
 `;
 
 export const CommentContent = styled.div`
@@ -100,6 +133,19 @@ export const CommentText = styled.div`
   padding: 16px 0;
   font-size: 1.5rem;
   word-break: break-all;
+
+  ${tablet`{
+    font-size: 1.4rem;
+  }`}
+
+  ${xMobile`{
+    padding: 0;
+    font-size: 1rem;
+  }`}
+
+  ${sMobile`{
+    font-size: 0.9rem;
+  }`}
 `;
 
 export const CommentIcon = styled.img`
@@ -127,13 +173,18 @@ export const CommentFormWrapper = styled.form`
   &.subComment {
     margin-left: 5%;
   }
+
+  ${xMobile`{
+    min-height: 0;
+    padding: 0;
+  }`}
 `;
 
 export const CommentFormUserWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 15%;
-  row-gap: 16px;
+  row-gap: 8px;
 `;
 
 export const CommentFormUserData = styled.div`
@@ -142,12 +193,25 @@ export const CommentFormUserData = styled.div`
   row-gap: 2px;
 `;
 
-export const CommentFormUserLabel = styled.label``;
+export const CommentFormUserLabel = styled.label`
+  ${xMobile`{
+    font-size: 0.7rem;
+  }`}
+
+  ${sMobile`{
+    font-size: 0.6rem;
+  }`}
+`;
 
 export const CommentFormUserInput = styled.input`
   padding: 8px;
   height: 12px;
   border-radius: 4px;
+
+  ${xMobile`{
+    padding: 4px;
+    height: 8px;
+  }`}
 `;
 
 export const CommentFormContentWrapper = styled.div`
@@ -161,6 +225,11 @@ export const CommentFormContentContainer = styled.div`
   display: flex;
   column-gap: 16px;
   height: 100px;
+
+  ${xMobile`{
+    column-gap: 8px;
+    height: 60px;
+  }`}
 `;
 
 export const CommentFormText = styled.textarea`
@@ -207,10 +276,20 @@ const CommentFormButton = styled.button`
 export const CommentFormSwitchButton = styled(CommentFormButton)`
   padding: 4px;
   width: 100px;
+
+  ${xMobile`{
+    width: 60px;
+    font-size: 0.8rem;
+  }`}
 `;
 
 export const CommentFormSubmitButton = styled(CommentFormButton)`
   padding: 4px;
   width: 80px;
   margin-left: auto;
+
+  ${xMobile`{
+    width: 60px;
+    font-size: 0.8rem;
+  }`}
 `;
