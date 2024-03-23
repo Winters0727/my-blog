@@ -59,6 +59,10 @@ export const CommentContainer = styled.div`
 
   &.subComment {
     margin-left: 5%;
+
+    ${xMobile`{
+      margin-left: 2%;
+    }`}
   }
 
   &.light {
@@ -144,7 +148,7 @@ export const CommentText = styled.div`
   }`}
 
   ${sMobile`{
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }`}
 `;
 
@@ -154,6 +158,21 @@ export const CommentIcon = styled.img`
   margin: auto 0;
   border-radius: 4px;
   cursor: pointer;
+
+  ${tablet`{
+    width: 120px;
+    height: 120px;
+  }`}
+
+  ${xMobile`{
+    width: 100px;
+    height: 100px;
+  }`}
+
+  ${sMobile`{
+    width: 80px;
+    height: 80px;
+  }`}
 `;
 
 export const CommentPassword = styled.input`
@@ -172,6 +191,10 @@ export const CommentFormWrapper = styled.form`
 
   &.subComment {
     margin-left: 5%;
+
+    ${xMobile`{
+      margin-left: 2%;
+    }`}
   }
 
   ${xMobile`{
@@ -199,7 +222,7 @@ export const CommentFormUserLabel = styled.label`
   }`}
 
   ${sMobile`{
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }`}
 `;
 
@@ -211,6 +234,11 @@ export const CommentFormUserInput = styled.input`
   ${xMobile`{
     padding: 4px;
     height: 8px;
+    font-size: 0.7rem;
+  }`}
+
+  ${sMobile`{
+    font-size: 0.5rem;
   }`}
 `;
 
@@ -236,6 +264,11 @@ export const CommentFormText = styled.textarea`
   padding: 16px;
   width: 100%;
   border-radius: 4px;
+
+  ${xMobile`{
+    padding: 8px;
+    font-size: 0.7rem;
+  }`}
 `;
 export const CommentFormIconContainer = styled.div`
   display: flex;
@@ -246,17 +279,37 @@ export const CommentFormIconContainer = styled.div`
   border-radius: 4px;
   background-color: ${COLORS.white};
   overflow-y: auto;
+
+  ${xMobile`{
+    padding: 4px;
+    column-gap: 4px;
+  }`}
 `;
 
 export const CommentFormIcon = styled.img`
   width: 75px;
   height: 75px;
   border-radius: 4px;
-  cursor: pointer;
+
+  ${tablet`{
+    width: 60px;
+    height: 60px;
+  }`}
+
+  ${xMobile`{
+    width: 40px;
+    height: 40px;
+  }`}
+
+  ${sMobile`{
+    width: 30px;
+    height: 30px;
+  }`}
 `;
 
 export const CommentFormIconButton = styled.button`
   background-color: transparent;
+  cursor: pointer;
 `;
 
 export const CommentFormSwitchButtonContainer = styled.div`
