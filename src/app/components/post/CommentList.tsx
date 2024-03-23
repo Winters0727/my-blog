@@ -70,6 +70,7 @@ const CommentList: FC<CommentListProps> = ({
               {subFormId === comment._id && (
                 <CommentForm
                   parentId={comment._id}
+                  isSubComment={true}
                   slug={slug}
                   fetchComments={fetchComments}
                 />
@@ -77,7 +78,7 @@ const CommentList: FC<CommentListProps> = ({
             </Fragment>
           )
         )}
-      <CommentForm slug={slug} fetchComments={fetchComments} />
+      {!subFormId && <CommentForm slug={slug} fetchComments={fetchComments} />}
     </CommentListWrapper>
   );
 };
