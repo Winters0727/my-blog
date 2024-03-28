@@ -15,7 +15,7 @@ import {
   NotFoundImage,
 } from "@/app/styles/404.style";
 
-import type { Metadata } from "next";
+import type { Metadata, NextPage } from "next";
 
 export const metadata: Metadata = {
   ...METADATA,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-const NotFound = () => {
+const NotFound: NextPage = () => {
   const [countdown, setCountdown] = useState(NOTFOUND_MAX_COUNT);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
