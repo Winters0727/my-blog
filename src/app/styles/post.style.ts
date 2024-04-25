@@ -217,9 +217,9 @@ export const PostContentWrapper = styled.section`
     text-align: center;
   }
 
-  & > ul {
+  & > ol,
+  ul {
     font-size: 1.2rem;
-    list-style: square;
 
     ${mobile`{
       font-size: 1rem;
@@ -236,6 +236,14 @@ export const PostContentWrapper = styled.section`
         margin: 0;
       }
     }
+  }
+
+  & > ol {
+    list-style-type: inhert;
+  }
+
+  & > ul {
+    list-style-type: inhert;
   }
 
   & strong {
