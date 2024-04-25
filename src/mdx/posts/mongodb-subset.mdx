@@ -65,7 +65,7 @@ MongoDB의 황금룰에 따라 도큐먼트를 저장할 때 임베딩 방식으
 
 ```javascript
 // 1. 책 컬렉션에 있는 리뷰 필드 제거
-db.books.aggregation([
+db.books.aggregate([
   {
     // 배열로 저장된 리뷰 필드를 개별 도큐먼트로 분리
     $unwind: {
