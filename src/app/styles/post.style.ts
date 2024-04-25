@@ -246,8 +246,18 @@ export const PostContentWrapper = styled.section`
 
   &.light {
     blockquote {
+      padding: 16px;
       background-color: ${light.blockquote};
       border-left: 5px solid ${light.blockquoteBorder};
+      font-size: 1.2rem;
+
+      ${mobile`{
+        font-size: 1rem;
+      }`}
+
+      ${xMobile`{
+        font-size: 0.8rem;
+      }`}
     }
 
     em {
@@ -262,8 +272,18 @@ export const PostContentWrapper = styled.section`
 
   &.dark {
     blockquote {
+      padding: 16px;
       background-color: ${dark.blockquote};
       border-left: 5px solid ${dark.blockquoteBorder};
+      font-size: 1.2rem;
+
+      ${mobile`{
+        font-size: 1rem;
+      }`}
+
+      ${xMobile`{
+        font-size: 0.8rem;
+      }`}
     }
 
     em {
