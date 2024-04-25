@@ -1,0 +1,94 @@
+---
+title: MongoDB - 싱글 컬렉션 패턴
+description: MongoDB 데이터 모델링 심화 스키마 패턴 - 싱글 컬렉션 패턴
+category: 개발
+subCategory: MongoDB
+thumbnail: images/posts/mongodb-single-collection/thumbnail.png
+tags:
+  - MongoDB
+  - Schema
+published: true
+series: MongoDB
+createdAt: 2024-04-21T09:49:10.121Z
+updatedAt: 2024-04-21T09:49:10.121Z
+---
+
+### 싱글 컬렉션 패턴
+
+![data from different collections](/images/posts/mongodb-single-collection/data-from-different-collections.png)
+
+_MongoDB에서도 다른 컬렉션에 저장된 도큐먼트들이 함께 자주 사용되는 경우가 많다._
+
+별도의 컬렉션에 저장된 도큐먼트들이 함께 자주 사용될 때 고려할 수 있는 스키마 패턴이다. 어찌보면 MongoDB의 황금룰을 가장 잘 따르는 패턴이라고 볼 수 있다.
+
+> 함께 사용되는 데이터들은 함께 저장되어야 한다. - MongoDB Team
+
+별도의 컬렉션에 저장된 도큐먼터들을 키값으로 불러올 때 RDB의 <strong>JOIN</strong>과 유사한 사용되는 집계(aggregation) 명령어로 <strong>$lookup</strong>이 있지만, 비용이 높은 명령어이기 때문에 자주 사용되는 도큐먼트들을 함께 불러오는 데는 부적합하다.
+
+MongoDB 팀에서는 싱글 컬렉션 패턴으로 다음과 같이 2가지 방법을 제시한다.
+
+### 방법 1. 도큐먼트 타입과 참조 배열 정의
+
+![varaint 1](/images/posts/mongodb-single-collection/variant-1.png)
+
+_방법1. 도큐먼트 타입과 참조 배열_
+
+도큐먼트 타입을 정의하여 다른 종류의 도큐먼트임을 명시하고, 참조 배열을 정의하여 연관성을 부여한다. 이 방법은 일대다, 다대다 관계에서 사용할 수 있다.
+
+<ul>
+  <li>
+    <strong>도큐먼트 타입</strong>: 도큐먼트의 타입을 정의하는 필드로 병합되기
+    전 컬렉션의 역할을 대체한다.
+  </li>
+  <li>
+    <strong>참조 배열</strong>: 함께 사용되는 문서 타입이 다른 도큐먼트들을
+    이어주는 키를 저장하는 배열이다.
+  </li>
+</ul>
+
+참조 배열은 도큐먼트들을 찾는 기준이 되기 때문에 인덱스를 생성해주는 것이 좋다.
+
+```bash
+$ db.collection.createIndex({ "relatedTo": 1 })
+```
+
+이제 참조 배열을 이용하여 관련이 있는 도큐먼트들을 하나의 컬렉션 내에서 모두 불러올 수 있다.
+
+```bash
+$ db.collection.find({ "relatedTo": <key> });
+
+"특정 도큐먼트 타입을 찾는 경우"
+
+$ db.collection.find({ "relatedTo": <key>, "docType": <type> });
+```
+
+### 방법 2. 필드 오버로딩
+
+도큐먼트를 구분하는 기존의 키 역할을 통합된 컬렉션에서 대체하는 필드를 추가한다. 이 방법은 일대다 관계에서만 사용할 수 있다.
+
+![varaint 2](/images/posts/mongodb-single-collection/variant-2.png)
+
+예시에서는 책과 리뷰를 하나의 컬렉션에서 다루는 경우를 가정한다. 책과 리뷰의 관계는 일대다 관계이다.
+
+먼저 도큐먼트들을 구분하기 위한 필드로 <strong>sc_id</strong>가 추가되었다. 책과 리뷰는 동일한 타입 내에서 구분되기 위한 키(<strong>id</strong>)를 가지고 있는데 일대다(1:N) 관계에서 일(1)에 해당되는 책의 <strong>sc_id</strong>는 <strong>id</strong>를 그대로 사용하고, 다(N)에 해당하는 리뷰는 책의 <strong>id</strong>에 리뷰의 <strong>id</strong>를 조합하는 형태로 저장한다.
+
+이제 책과 리뷰의 <strong>sc_id</strong>는 앞의 참조 배열과 마찬가지로 도큐먼트들을 찾는 기준이
+되기 때문에 인덱스를 생성해주는 것이 좋다.
+
+```bash
+$ db.collection.createIndex({ "sc_id": 1 })
+```
+
+이제 책과 그 책에 대한 리뷰 도큐먼트들을 불러올 때 다음과 같이 정규 표현식을 사용하여 불러올 수 있다.
+
+```bash
+$ db.collection.createIndex({ "sc_id": { "$regex": "^<book_id>"} })
+
+"책을 제외한 리뷰 도큐먼트들만을 찾는 경우"
+
+$ db.collection.createIndex({ "sc_id": { "$regex": "^<book_id>/"} })
+```
+
+### 결론
+
+싱글 컬렉션 패턴은 서로 다른 유형의 도큐먼트들을 하나의 컬렉션으로 그룹화하는 패턴이다. 데이터의 중복을 감수하더라도 자주 사용되는 데이터들을 함께 저장하는 임베딩은 다대다 관계에서는 좋은 선택지가 아니었는데, 이에 대한 대책(특히 도큐먼트 타입과 참조 배열 정의)이 될 수 있는 패턴이라고 생각한다.
