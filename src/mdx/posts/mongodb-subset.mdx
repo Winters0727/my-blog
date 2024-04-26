@@ -19,7 +19,7 @@ updatedAt: 2024-04-26T10:15:32.212Z
 
 _MongoDB에서 스토리지 엔진 역할을 담당하는 Wired Tiger_
 
-MongoDB는 스토리지 엔진으로 [Wired Tiger](https://www.mongodb.com/ko-kr/docs/manual/core/wiredtiger/)를 사용하는데, <strong>Wired Tiger</strong>는 자주 액세스되는 데이터를 내부 캐시로 메모리에 저장한다. 내부 캐시 프로세스는 저장되는 데이터의 크기와 인덱스의 영향을 받는데, 데이터와 인덱스 셋의 크기가 내부 캐시 크기를 초과하면 데이터베이스 성능 저하를 일으킨다.
+MongoDB는 스토리지 엔진으로 [Wired Tiger](https://www.mongodb.com/ko-kr/docs/manual/core/wiredtiger/)를 사용하는데, <strong>Wired Tiger</strong>는 자주 액세스 되는 데이터를 내부 캐시로 메모리에 저장한다. 내부 캐시 프로세스는 저장되는 데이터의 크기와 인덱스의 영향을 받는데, 데이터와 인덱스 셋의 크기가 내부 캐시 크기를 초과하면 데이터베이스 성능 저하를 일으킨다.
 
 MongoDB의 황금룰에 따라 도큐먼트를 저장할 때 임베딩 방식으로 데이터 저장하는 경우가 많은데, 필드에 따라 크기에 제한이 없는 경우 도큐먼트의 크기는 무한정으로 커지게 된다.
 
