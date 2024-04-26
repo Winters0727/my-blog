@@ -1,0 +1,77 @@
+---
+title: MongoDB -  버킷 패턴
+description: MongoDB 데이터 모델링 심화 스키마 패턴 - 버킷 패턴
+category: 개발
+subCategory: MongoDB
+thumbnail: images/posts/mongodb-thumbnail.png
+tags:
+  - MongoDB
+  - Schema
+published: true
+series: MongoDB
+createdAt: 2024-04-24T21:32:21.523Z
+updatedAt: 2024-04-24T21:32:21.523Z
+---
+
+### 버킷 패턴
+
+버킷 패턴은 개별로는 큰 의미를 갖지 않는 데이터를 하나의 그룹화된 버킷으로 저장하는 패턴으로 주로 시계열 데이터를 다룰 때 사용한다.
+
+시계열 데이터는 주로 기간을 정해서 그룹화하기 때문에 도큐먼트의 크기를 예측할 수 있어 미리 계산한 값(<strong>Computed Value</strong>)을 저장하여 연산의 반복을 방지할 수도 있다.
+
+예시로 책의 조회 컬렉션이 있다고 가정하자. 책의 조회 도큐먼트 스키마는 다음과 같다.
+
+```javascript
+{
+  book_id: number;
+  timestamp: ISODate;
+  user_id: number;
+}
+```
+
+책의 월별 조회수를 참고하여 책에 대한 인기 순위를 측정하려고 한다. 책의 조회 데이터를 월을 기준으로 그룹화하여 버킷으로 만들어둔다면 작업이 용이해질 것이다.
+
+```javascript
+{
+  id: {
+    book_id: number;
+    date: ISODate;
+  },
+  views: [
+    {
+      timestamp: ISODate;
+      user_id: number;
+    },
+    {
+      timestamp: ISODate;
+      user_id: number;
+    },
+    ...
+  ]
+}
+```
+
+이제 책의 조회 도큐먼트들은 책의 id(<strong>book_id</strong>)와 년월(<strong>date</strong>)을 id로 하는 하나의 버킷으로 그룹화되었다.
+
+이제 버킷을 활용하여 id가 <strong>31459</strong>인 책의 2024년 3월의 조회수를 계산해보자.
+
+```bash
+db.views.find(
+  {
+    "id.book_id": 31459,
+    "id.date": {
+      $gte: ISODate("2024-03-01T00:00:00.000Z"),
+      $lt: ISODate("2024-04-01T00:00:00.000Z"),
+    },
+  },
+  {
+    "views_count": { $size: "$views" },
+  }
+);
+```
+
+### 결론
+
+하지만, 배열의 크기가 정해지지 않은 경우에는 버킷 패턴을 피하는 것이 좋다. 크기가 정해지지 않았다는 것은 배열의 데이터에 쓰기 및 제거 작업이 이루어진다는 뜻이다. 이를 방지하기 위해 MongoDB에서 제공하는 스키마 유효성 검사 도구를 사용할 수 있다.
+
+또는 임계값을 설정하여 배열의 크기가 임계값을 초과할 경우, 남은 데이터를 동일한 id를 가지는 새 버킷을 생성하여 저장하는 방법도 있다. 이 경우에는 id에 서로 다른 버킷임을 구분할 수 있게 해주는 필드가 필요하다.
