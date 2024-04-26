@@ -3,7 +3,7 @@ title: MongoDB - 싱글 컬렉션 패턴
 description: MongoDB 데이터 모델링 심화 스키마 패턴 - 싱글 컬렉션 패턴
 category: 개발
 subCategory: MongoDB
-thumbnail: images/posts/mongodb-single-collection/thumbnail.png
+thumbnail: images/posts/mongodb-thumbnail.png
 tags:
   - MongoDB
   - Schema
@@ -82,11 +82,11 @@ $ db.collection.createIndex({ "sc_id": 1 })
 이제 책과 그 책에 대한 리뷰 도큐먼트들을 불러올 때 다음과 같이 정규 표현식을 사용하여 불러올 수 있다.
 
 ```bash
-$ db.collection.createIndex({ "sc_id": { "$regex": "^<book_id>"} })
+$ db.collection.createIndex({ "sc_id": { $regex: "^<book_id>"} })
 
 "책을 제외한 리뷰 도큐먼트들만을 찾는 경우"
 
-$ db.collection.createIndex({ "sc_id": { "$regex": "^<book_id>/"} })
+$ db.collection.createIndex({ "sc_id": { $regex: "^<book_id>/"} })
 ```
 
 ### 결론
