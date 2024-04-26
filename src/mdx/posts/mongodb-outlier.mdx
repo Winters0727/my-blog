@@ -1,0 +1,124 @@
+---
+title: MongoDB -  아웃라이어 패턴
+description: MongoDB 데이터 모델링 심화 스키마 패턴 - 아웃라이어 패턴
+category: 개발
+subCategory: MongoDB
+thumbnail: images/posts/mongodb-thumbnail.png
+tags:
+  - MongoDB
+  - Schema
+published: true
+series: MongoDB 스키마 패턴
+createdAt: 2024-04-26T23:15:32.212Z
+updatedAt: 2024-04-26T23:15:32.212Z
+---
+
+### 아웃라이어 패턴
+
+![outlier](/images/posts/mongodb-outlier/outlier.png)
+
+_아웃라이어 패턴_
+
+아웃라이어 패턴은 다른 데이터들의 평균 또는 예측값과는 크게 다른 에지 케이스(<strong>Edge Case</strong>)를 추후에 별도의 처리를 위해 맵핑하는 패턴이다. 자주 액세스 되는 에지 케이스를 맵핑해두면 복잡한 쿼리를 단순하게 만들 수 있다는 장점이 있다.
+
+맵핑을 위한 파이프라인은 에지 케이스의 조건으로 분류하는데서 시작한다.
+
+예시로 SNS 서비스 플랫폼에서 유저 정보 스키마가 다음과 같다고 가정하자.
+
+```javascript
+{
+  user_id: number;
+  ...
+  followers: number[];
+}
+```
+
+여기서 팔로워의 수가 5만명 이상인 유저를 인플루언서로 분류를 하려고 한다. 이런 경우에 팔로워 수가 5만 이상인 조건은 유저 수의 에지 케이스를 정하게 되는 조건이 된다.
+
+```javascript
+db.users.updateMany(
+  {
+    $expr: {
+      $gte: [
+        {
+          $size: "$followers",
+        },
+        50000,
+      ],
+    },
+  },
+  {
+    $set: {
+      influencer: true,
+    },
+  }
+);
+```
+
+이제 에지 케이스의 조건을 좀 더 복잡하게 해보자.
+
+인플루언서의 조건을 팔로워 수 5만명 이상 외에도 가입일자가 1년 이상, 작성한 포스트의 수가 50개 이상이라는 조건들이 추가되었다.
+
+```javascript
+{
+  user_id: number;
+  ...
+  posts: Post[];
+  followers: number[];
+  createdAt: ISODate;
+}
+```
+
+```javascript
+db.users.updateMany(
+  {
+    $expr: {
+      $and: [
+        {
+          $gte: [
+            {
+              $size: "$followers",
+            },
+            50000,
+          ],
+        },
+        {
+          $gte: [
+            {
+              $dateDiff: {
+                startDate: "$createdAt",
+                endDate: ISODate(currentDate),
+                unit: "year",
+              },
+            },
+            1,
+          ],
+        },
+        {
+          $gte: [
+            {
+              $size: "$posts",
+            },
+            50,
+          ],
+        },
+      ],
+    },
+  },
+  {
+    $set: {
+      influencer: true,
+    },
+  }
+);
+```
+
+이제 인플루언서를 찾기 위해서 복잡한 쿼리를 반복할 필요 없이 인플루언서 여부만 확인하면 된다.
+
+```javascript
+db.users.find({ influencer: true });
+```
+
+### 결론
+
+아웃라이어 패턴은 에지 케이스 구분을 위한 맵핑 프로세스를 가지는 패턴으로 에지 케이스를 별도로 구분하여 작업할 필요가 있는 경우에 사용하는 패턴이다. 에지 케이스를 위한 작업을 포함하는 패턴이기 때문에 자주 사용되는 패턴은 아니다.
