@@ -21,7 +21,7 @@ updatedAt: 2024-04-26T10:15:32.212Z
 
 예시로 책의 조회 컬렉션이 있다고 가정하자. 책의 조회 도큐먼트 스키마는 다음과 같다.
 
-```javascript
+```typescript
 {
   book_id: number;
   timestamp: ISODate;
@@ -31,7 +31,7 @@ updatedAt: 2024-04-26T10:15:32.212Z
 
 책의 월별 조회수를 참고하여 책에 대한 인기 순위를 측정하려고 한다. 책의 조회 데이터를 월을 기준으로 그룹화하여 버킷으로 만들어둔다면 작업이 용이해질 것이다.
 
-```javascript
+```typescript
 {
   id: {
     book_id: number;
