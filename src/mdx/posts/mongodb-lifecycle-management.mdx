@@ -1,0 +1,193 @@
+---
+title: MongoDB - 라이프사이클 관리
+description: MongoDB 라이프사이클 관리
+category: 개발
+subCategory: MongoDB
+thumbnail: images/posts/mongodb-thumbnail.png
+tags:
+  - MongoDB
+  - Schema
+published: true
+series: MongoDB 스키마 패턴
+createdAt: 2024-05-05T02:32:21.214Z
+updatedAt: 2024-05-05T02:32:21.214Z
+---
+
+## 스키마 검증(Schema Validation)
+
+### 검증 규칙(Validation Rule)
+
+MongoDB의 컬렉션에는 다른 유형의 도큐먼트들이 함께 저장되어 있는데, 검증 규칙이 있는 컬렉션의 경우 검증 규칙을 통과한 도큐먼트들만이 저장된다.
+
+검증 규칙은 컬렉션 생성 시에 추가할 수 있으며, 이후에 추가된 검증 규칙은 새 검증 규칙이 추가된 이후에 생성되는 도큐먼트들에만 적용된다. (이미 저장되어 있는 도큐먼트들은 수정 시에 적용된다.)
+
+검증 규칙을 정의하기 위한 방법으로는 쿼리 연산자(<strong>Query Operator</strong>)와 JSON 스키마가 있다.
+
+```typescript
+db.createCollection("sales", {
+  validator: {
+    $and: [
+      // 쿼리 연산자
+      {
+        // 할인된 가격은 원래 가격보다 작아야한다.
+        $lt: ["$items.discountedPrice", "items.price"],
+      },
+      // JSON 스키마
+      {
+        $jsonSchema: {
+          properties: {
+            // "items" 프로퍼티의 bsonType은 배열이다.
+            items: { bsonType: "array" },
+          },
+        },
+      },
+    ],
+  },
+});
+```
+
+### 검증 레벨(Validation Level)
+
+<ul style={{ listStyleType: "disc" }}>
+  <li>
+    <strong>Strict</strong>: 이후에 도큐먼트가 추가될 때와 현재 저장된 모든
+    도큐먼트들이 수정될 때 적용(유효성 검증에 실패한 도큐먼트도 포함)
+  </li>
+  <li>
+    <strong>Moderate</strong>: 이후에 도큐먼트가 추가될 때와 유효성 검증에
+    통과한 도큐먼트들이 수정될 때 적용(유효성 검증에 실패한 도큐먼트는 무시)
+  </li>
+</ul>
+
+유효성 검증에 실패한 도큐먼트들만을 검색할 때는 <strong>$nor</strong> 연산자를 사용하면 된다.
+
+```typescript
+db.collection.find({ $nor: [validator] });
+```
+
+### 검증 조치(Validation Action)
+
+<ul style={{ listStyleType: "disc" }}>
+  <li>
+    에러(<strong>Error</strong>): 삽입 및 수정 작업 처리에 실패했을 시에(기본값)
+  </li>
+  <li>
+    경고(<strong>Warn</strong>): 작업은 처리되었으나 규칙 위반 로그를 남길 시에
+  </li>
+</ul>
+
+```typescript
+const reviews_schmea_validation = {
+  $jsonSchema: {
+    bsonType: "object",
+    required: [“_id”, "review_id", "user_id", "timestamp", "review", "rating"],
+    additionalProperties: false,
+    properties: {
+        _id: { bsonType: "objectId" },
+        review_id: { bsonType: "string" },
+        user_id: { bsonType: "string" },
+        timestamp: { bsonType: "date" },
+        review: { bsonType: "string" },
+        rating: {
+            bsonType: "int",
+            minimum: 0,
+            maximum: 5,
+        },
+        comments: {
+            bsonType: "array",
+            maxItems: 3,
+            items: {
+                bsonType: "object",
+            },
+        },
+    },
+};
+
+db.runCommand({
+  collMod: "reviews",
+  validator: reviews_schema_validation,
+  validationLevel: "moderate",
+  validationAction: "warn",
+});
+```
+
+## 스키마 개선(Schema Evolution)
+
+기존 스키마에 필드를 추가 및 삭제 등 스키마는 서비스를 운영하면서 유용하게 개선되어야 한다.
+
+```typescript
+const reviews_schmea_validation = {
+  $jsonSchema: {
+    ...,
+    // 새로 추가된 locale 필드
+    locale: {
+        enum: [“en”, “fr”]},
+    },
+};
+
+db.runCommand({
+  collMod: "reviews",
+  validator: reviews_schema_validation,
+  validationLevel: "moderate",
+  validationAction: "warn",
+});
+```
+
+스키마를 개선하는 동안에는 모니터링 전략을 세워 지속적인 모니터링을 해야한다. MongoDB에서는 로그를 추가하고 아틀라스에서 제안하는 스키마 전략을 따를 것을 추천한다.
+
+## 스키마 이전(Schema Migration)
+
+스키마 버저닝 패턴과 스키마 검증 규칙을 활용하면 쉽게
+
+<ul style={{ listStyleType: "disc" }}>
+  <li>
+    <strong>Eager</strong>: 모든 데이터를 한꺼번에 이전
+  </li>
+  <li>
+    <strong>Lazy</strong>: 사용되고 있는 데이터부터 이전
+  </li>
+  <li>
+    <strong>Incremental</strong>: 일정 단계를 거쳐 조금씩 데이터를 이전
+  </li>
+  <li>
+    <strong>Predictive</strong>: 미래 데이터 사용 유형을 예측하여 그에 맞춰
+    데이터를 이전
+  </li>
+</ul>
+
+```typescript
+const reviews_schmea_validation_with_version = {
+  $jsonSchema: {
+    ...,
+    required: [
+      ...,
+      "schema_version",
+    ],
+    additionalProperties: false,
+    ...
+    schema_version: {
+      enum: ["1.0.0"],
+    }
+};
+```
+
+<strong>oneOf</strong>: 제시된 검증 규칙 중 한가지에만 유효해야함. (2개 이상
+유효한 경우에 에러 발생)
+
+<strong>additionalProperties</strong>는 <strong>false</strong>로 설정하여 필수 필드의
+수가 변경되는 것을 방지해야한다.
+
+```typescript
+const schema_migration_validation = {
+  $jsonSchema: {
+    oneOf: [reviews_schema_validation, reviews_schema_validation_with_version],
+  },
+};
+
+db.runCommand({
+  collMod: "reviews",
+  validator: schema_migration_validation,
+  validationLevel: "strict",
+  validationAction: "error",
+});
+```
