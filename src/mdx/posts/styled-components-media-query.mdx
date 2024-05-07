@@ -1,0 +1,148 @@
+---
+title: Tag 함수를 활용한 미디어 쿼리 간편화
+description: styled-components에서 Tag 함수를 사용한 미디어 쿼리 간편화
+category: 개발
+subCategory: CSS
+thumbnail: images/posts/styled-components-thumbnail.png
+tags:
+  - StyledComponents
+published: true
+createdAt: 2024-05-01T14:35:16.921Z
+updatedAt: 2024-05-01T14:35:16.921Z
+---
+
+### 미디어 쿼리(Media Query)란?
+
+![caniuse](/images/posts/styled-components-media-query/caniuse.png)
+
+_오늘날 최신 브라우저 대부분은 미디어 쿼리를 지원한다. (여기서도 무시되는 IE...)_
+
+CSS 미디어 쿼리는 브라우저 및 디바이스 환경이 미리 설정해 둔 조건에 맞는 경우에만 CSS를 적용할 수 있게 한다.
+
+미디어 쿼리의 기본적인 문법은 다음과 같다.
+
+```css
+@media <media-type> and (<media-feature-rule>) {
+  /** CSS **/
+}
+```
+
+미디어 타입(<strong>Media Type</strong>)은 다음과 같이 세가지가 있다.
+
+<ul style={{ listStyleType: "disc" }}>
+  <li>
+    <strong>all</strong>: 출력물 및 스크린 디바이스에 모두 적용
+  </li>
+  <li>
+    <strong>print</strong>: 출력물에만 적용
+  </li>
+  <li>
+    <strong>screen</strong>: 스크린 디바이스에만 적용
+  </li>
+</ul>
+
+미디어 특징 규칙(<strong>Media Feature Rule</strong>) 너비(<strong>Width</strong>) 및 높이(<strong>Height</strong>)에 대한 조건을 규정한다.
+
+미디어 타입과 미디어 특징 규칙을 활용하여 다음과 같이 미디어 쿼리를 작성한다.
+
+```css
+// 600px 너비의 스크린 디바이스에만 적용
+@media screen and (width: 600px) {
+  /** CSS **/
+}
+
+// 480px 이상 640px 이하 너비의 스크린 디바이스에만 적용
+@media screen and (min-width: 480px) and (max-width: 640px) {
+  /** CSS **/
+}
+```
+
+스크린 디바이스들의 각 너비를 분류하여 미디어 쿼리에 의한 CSS 변경 지점을 브레이크포인트라 하는데, 자주 사용되는 CSS 라이브러리인 부트스트랩(<strong>Bootstrap</strong>)에서는 다음과 같이 6가지의 <a target="_blank" href="https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints">브레이크포인트</a>를 제시한다.
+
+![breakpoints](/images/posts/styled-components-media-query/breakpoints.png)
+
+_부트스트랩에서 제시하는 6가지 브레이크포인트_
+
+개인적으로 부트스트랩에서 제시하는 브레이크포인트를 기준으로 576px 미만이 휴대용 모바일 기기, 576px 이상 - 992px 미만이 태블릿, 992px 이상 - 1200px 미만은 노트북, 1200px 이상은 PC로 구분하는 편이다. 이를 CSS에 적용하면 다음과 같다.
+
+```css
+@media screen and (max-width: 575px) {
+  /** 휴대용 모바일 기기 CSS **/
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+  /** 태블릿 CSS **/
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  /** 노트북 CSS **/
+}
+
+@media screen and (max-width: 1200px) {
+  /** PC CSS **/
+}
+```
+
+미디어 쿼리의 미디어 특징 규칙은 서비스가 자주 사용될 스크린 다비이스를 기본으로 하는 CSS를 작성하는 편이 좋다.
+
+하지만 매번 미디어 쿼리를 반복해서 작성하는 것은 조금 불편한 일이다. <strong>Styled Components</strong>에서 템플릿 리터럴을 사용하므로 Tag 함수로 간단하게 작성할 수 있다.
+
+### Tag 함수
+
+함수를 호출할 때 함수명 옆에 템플릿 리터럴을 작성하면 이를 첫번째 인자로 받는데 이러한 함수를 Tag 함수(<strong>Tag Function</strong>)라 한다.
+
+```typescript
+const tagTest = (str: string) => console.log(`input: ${str}`);
+
+tagTest`Hello, world!`; // "input: Hello, world!"
+
+// 일반 함수와 동일하게도 동작한다.
+tagTest("Hello, world!"); // "input: Hello, world!"
+```
+
+이제 너비에 따라 다른 규칙이 적용되도록 Tag 함수를 작성해보자.
+
+```typescript
+// style.util.ts
+
+type Media = "mobile" | "tablet" | "laptop"; // pc는 기본 CSS를 적용하므로 제외
+
+const SCREEN_DEVICE_MAX_WIDTH: { [key in Media]: number } = {
+  laptop: 1199,
+  tablet: 991,
+  mobile: 575,
+};
+
+const createMediaQuery = (media: Media) => (css: string) =>
+  `@media screen and (max-width: ${SCREEN_DEVICE_MAX_WIDTH[media]}px) ${css}`;
+
+export const mobile = createMediaQuery("mobile");
+export const tablet = createMediaQuery("tablet");
+export const laptop = createMediaQuery("laptop");
+```
+
+이제 매번 규칙을 작성할 필요 없이 다음과 같이 작성하면 된다.
+
+```typescript
+// index.style.ts
+
+import styled from "styled-components";
+
+import { mobile, tablet, laptop } from "@/utils/style.util";
+
+export const PageWrapper = styled.article`
+  /** pc CSS **/
+
+  ${laptop`{
+    /** laptop CSS **/
+  }`}
+
+  ${tablet`{
+    /** tablet CSS **/
+  }`}
+
+  ${mobile`{
+    /** mobile CSS **/
+  }`}
+`;
+```
